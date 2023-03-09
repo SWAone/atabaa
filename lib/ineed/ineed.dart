@@ -1,6 +1,9 @@
+import 'package:ataba/color/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ineed {
   static Widget custmText(
@@ -33,6 +36,7 @@ class ineed {
       style: TextStyle(
           color: Colors.white, fontWeight: FontWeight.bold, fontFamily: 'kufi'),
       decoration: InputDecoration(
+        border: InputBorder.none,
         label: Row(
           children: [
             ineed.custmText(data: lable, fontSize: 15.sp),
@@ -44,5 +48,107 @@ class ineed {
         ),
       ),
     );
+  }
+
+  static Widget postContener(
+      {required String title,
+      required String image,
+      void Function()? onPressedDelet}) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: color.postContener,
+                borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Container(
+                    width: double.infinity,
+                    height: 300.h,
+                    color: Colors.grey,
+                    child: Image.network(
+                      '$image',
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return Image(
+                              fit: BoxFit.cover, image: NetworkImage(image));
+                        } else {
+                          return Center(
+                            child: LoadingAnimationWidget.threeRotatingDots(
+                              color: Colors.white,
+                              size: 50.sp,
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Container(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                          child: ineed.custmText(fontSize: 15.sp, data: title)),
+                    ),
+                  ),
+                ),
+                //admin
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Row(
+                        children: [
+                          ineed.custmText(data: 'حذف', fontSize: 17.sp),
+                          IconButton(
+                              onPressed: onPressedDelet,
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                                size: 25.sp,
+                              )),
+                        ],
+                      )),
+                )
+                //
+              ],
+            )));
+  }
+
+  static Widget lodingPostShimmer() {
+    return Shimmer.fromColors(
+        child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Container(
+                    width: double.infinity.w,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10)),
+                  )
+                ],
+              ),
+            )),
+        baseColor: Colors.white12,
+        highlightColor: Colors.white24);
   }
 }
