@@ -36,7 +36,6 @@ class ineed {
       style: TextStyle(
           color: Colors.white, fontWeight: FontWeight.bold, fontFamily: 'kufi'),
       decoration: InputDecoration(
-        border: InputBorder.none,
         label: Row(
           children: [
             ineed.custmText(data: lable, fontSize: 15.sp),
@@ -56,69 +55,57 @@ class ineed {
       void Function()? onPressedDelet}) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: color.postContener,
-                borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Container(
-                    width: double.infinity,
-                    height: 300.h,
-                    color: Colors.grey,
-                    child: Image.network(
-                      '$image',
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
-                          return Image(
-                              fit: BoxFit.cover, image: NetworkImage(image));
-                        } else {
-                          return Center(
-                            child: LoadingAnimationWidget.threeRotatingDots(
-                              color: Colors.white,
-                              size: 50.sp,
-                            ),
-                          );
-                        }
-                      },
+        child: InkWell(
+          //admin
+          onTap: onPressedDelet,
+          child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: color.postContener,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Container(
+                      width: double.infinity,
+                      height: 300.h,
+                      color: Colors.grey,
+                      child: Image.network(
+                        '$image',
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return Image(
+                                fit: BoxFit.cover, image: NetworkImage(image));
+                          } else {
+                            return Center(
+                              child: LoadingAnimationWidget.threeRotatingDots(
+                                color: Colors.white,
+                                size: 50.sp,
+                              ),
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Container(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                          child: ineed.custmText(fontSize: 15.sp, data: title)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Container(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                            child:
+                                ineed.custmText(fontSize: 15.sp, data: title)),
+                      ),
                     ),
                   ),
-                ),
-                //admin
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Row(
-                        children: [
-                          ineed.custmText(data: 'حذف', fontSize: 17.sp),
-                          IconButton(
-                              onPressed: onPressedDelet,
-                              icon: Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                                size: 25.sp,
-                              )),
-                        ],
-                      )),
-                )
-                //
-              ],
-            )));
+
+                  //
+                ],
+              )),
+        ));
   }
 
   static Widget lodingPostShimmer() {
