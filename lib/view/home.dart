@@ -92,10 +92,16 @@ class home extends StatelessWidget {
                               child: Container(
                                   child: Row(
                                 children: [
-                                  Icon(
-                                    Icons.newspaper,
-                                    color: Colors.white,
-                                    size: 28.sp,
+                                  InkWell(
+                                    onDoubleTap: () {
+                                      print('ouuuuuuuuut');
+                                      cc.singOt();
+                                    },
+                                    child: Icon(
+                                      Icons.newspaper,
+                                      color: Colors.white,
+                                      size: 28.sp,
+                                    ),
                                   ),
                                   SizedBox(
                                     width: 5.w,

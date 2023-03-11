@@ -11,10 +11,10 @@ class loginControllr extends GetxController {
   GlobalKey<FormState> st = new GlobalKey<FormState>();
 
   void newUser() async {
-    loding = true;
     update();
     //rank 0 = يوزر عادي ليس ادمن
     if (st.currentState!.validate()) {
+      loding = true;
       st.currentState!.save();
       await FirebaseAuth.instance.signInAnonymously();
 

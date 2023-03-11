@@ -1,5 +1,6 @@
 import 'package:ataba/Controller/loginController.dart';
 import 'package:ataba/ineed/ineed.dart';
+import 'package:ataba/view/auth/signin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -25,60 +26,61 @@ class login extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: SingleChildScrollView(
-                child: Form(
-                  key: cc.st,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: Container(
-                            width: double.infinity,
-                            child: Image(
-                                image: AssetImage('assets/images/bac.png'))),
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: ineed.custemTextForm(
-                              lable: 'الاسم الثلاثي',
-                              onSaved: (p0) {
-                                cc.name = p0;
-                              },
-                            ),
+              child: Form(
+                key: cc.st,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Container(
+                          width: double.infinity,
+                          height: 200.h,
+                          child: Image(
+                              image: AssetImage('assets/images/bac.png'))),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: ineed.custemTextForm(
+                            lable: 'الاسم الثلاثي',
+                            onSaved: (p0) {
+                              cc.name = p0;
+                            },
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          cc.newUser();
-                        },
-                        child: GetBuilder<loginControllr>(
-                          init: loginControllr(),
-                          builder: (controller) {
-                            return Container(
-                              width: 300.w,
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        cc.newUser();
+                      },
+                      child: GetBuilder<loginControllr>(
+                        init: loginControllr(),
+                        builder: (controller) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Container(
                               height: 40.h,
                               // ignore: sort_child_properties_last
                               child: Center(
                                 child: controller.loding == false
                                     ? ineed.custmText(
-                                        data: 'الدخول الى التطبيق ',
+                                        data: 'الدخول الى التطبيق بدون حساب',
                                         color: Colors.white.withOpacity(0.8),
-                                        fontSize: 20.sp,
+                                        fontSize: 15.sp,
                                         isbold: true)
                                     : LoadingAnimationWidget.threeRotatingDots(
                                         color: Colors.white,
@@ -88,12 +90,47 @@ class login extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.white.withOpacity(0.2)),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => signin());
+                      },
+                      child: GetBuilder<loginControllr>(
+                        init: loginControllr(),
+                        builder: (controller) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Container(
+                              height: 40.h,
+                              // ignore: sort_child_properties_last
+                              child: Center(
+                                child: controller.loding == false
+                                    ? ineed.custmText(
+                                        data: 'تسجيل الدخول',
+                                        color: Colors.white.withOpacity(0.8),
+                                        fontSize: 15.sp,
+                                        isbold: true)
+                                    : LoadingAnimationWidget.threeRotatingDots(
+                                        color: Colors.white,
+                                        size: 20.sp,
+                                      ),
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white.withOpacity(0.2)),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               )),
         ),

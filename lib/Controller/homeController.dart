@@ -1,4 +1,5 @@
 import 'package:ataba/Controller/loginController.dart';
+import 'package:ataba/view/auth/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -121,5 +122,12 @@ class homeController extends GetxController {
         });
       },
     );
+  }
+
+  singOt() async {
+    await FirebaseAuth.instance.signOut().then((value) {
+      Get.off(() => signin());
+      update();
+    });
   }
 }
