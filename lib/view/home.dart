@@ -5,6 +5,7 @@ import 'package:ataba/ineed/ineed.dart';
 import 'package:ataba/view/addPost.dart';
 import 'package:ataba/view/istmara/tashef.dart';
 import 'package:ataba/view/model/Post.dart';
+import 'package:ataba/view/motshrfeen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -136,45 +137,23 @@ class home extends StatelessWidget {
                                     ),
                                     //الادمن الاساسي
                                   )
-                                : cc.rank == 1
-                                    ? Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: InkWell(
-                                          onTap: () {
-                                            Get.to(() => tashef());
-                                          },
-                                          child: Container(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(4),
-                                              child: ineed.custmText(
-                                                  data: 'المتشرفين بالخدمة',
-                                                  fontSize: 15.sp,
-                                                  isbold: true),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            await FirebaseAuth.instance
-                                                .signOut()
-                                                .then((value) {
-                                              Get.back();
-                                            });
-                                          },
-                                          child: Container(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(4),
-                                              child: ineed.custmText(
-                                                  data: 'تسجيل الخروج',
-                                                  fontSize: 15.sp,
-                                                  isbold: true),
-                                            ),
-                                          ),
+                                : Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.to(() => motshrfeen());
+                                      },
+                                      child: Container(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4),
+                                          child: ineed.custmText(
+                                              data: 'المتشرفين بالخدمة',
+                                              fontSize: 15.sp,
+                                              isbold: true),
                                         ),
                                       ),
+                                    ),
+                                  )
                           ],
                         ),
                         StreamBuilder<List<Post>>(
@@ -187,7 +166,7 @@ class home extends StatelessWidget {
                             }
 
                             if (!snapshot.hasData) {
-                              return Center(child: CircularProgressIndicator());
+                              return Center(child: ineed.lodingPostShimmer());
                             }
 
                             return snapshot.data!.length > 0
@@ -204,7 +183,9 @@ class home extends StatelessWidget {
                                       Post post = snapshot.data![index];
                                       return ineed.postContener(
                                           onPressedDelet: () {
-                                            cc.delet(docId: post.docId);
+                                            cc.rank == 1
+                                                ? cc.delet(docId: post.docId)
+                                                : null;
                                           },
                                           title: post.title,
                                           image: post.imageUrl);
