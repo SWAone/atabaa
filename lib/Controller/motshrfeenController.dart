@@ -8,6 +8,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 
 class motshrfeenController extends GetxController {
   List<Map> AllMotshrfeen = [];
+  int visibleItems = 3;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -23,24 +25,17 @@ class motshrfeenController extends GetxController {
       });
     }).then((value) {
       update();
-      AwesomeDialog(
-          context: Get.context!,
-          dialogType: DialogType.noHeader,
-          animType: AnimType.rightSlide,
-          title: 'مرحبا',
-          desc: 'عدد الطلبات ${AllMotshrfeen.length}',
-          titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              fontFamily: 'kufi',
-              fontWeight: FontWeight.bold),
-          descTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              fontFamily: 'kufi',
-              fontWeight: FontWeight.bold))
-        ..show();
-      update();
     });
+  }
+
+  void showMore() {
+    if (visibleItems < AllMotshrfeen.length &&
+        visibleItems + 5 < AllMotshrfeen.length) {
+      visibleItems += 5;
+    } else {
+      visibleItems = AllMotshrfeen.length;
+    }
+
+    update();
   }
 }

@@ -138,4 +138,37 @@ class ineed {
         baseColor: Colors.white12,
         highlightColor: Colors.white24);
   }
+
+  static Widget showMotrshrefConterer(
+      {required String title, required String subtitle, bool isadmin = false}) {
+    return Padding(
+        padding: const EdgeInsets.all(8),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.white)),
+          child: ListTile(
+            leading: CircleAvatar(
+              radius: 25,
+              backgroundColor: Colors.white,
+              child: Image.asset(
+                'assets/images/bac.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            title: ineed.custmText(data: title, fontSize: 15.sp, isbold: true),
+            subtitle: ineed.custmText(
+                data: 'يسكن في  :  $subtitle', isbold: true, fontSize: 12.sp),
+            trailing: isadmin
+                ? IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
+                      size: 30.sp,
+                    ))
+                : null,
+          ),
+        ));
+  }
 }

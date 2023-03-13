@@ -18,13 +18,24 @@ class homeController extends GetxController {
 
   GlobalKey<FormState> form = new GlobalKey<FormState>();
   int rank = 0;
+  RxBool shouldReloadPage = false.obs;
+
   @override
   void onInit() async {
     uid = await FirebaseAuth.instance.currentUser!.uid;
     // FirebaseAuth.instance.signOut();
     super.onInit();
+
     checkRank();
+
+    await Future.delayed(Duration(seconds: 3));
+    shouldReloadPage.value = false;
+
     print(uid);
+  }
+
+  void reloadPage() {
+    shouldReloadPage.value = true;
   }
 
   checkRank() async {

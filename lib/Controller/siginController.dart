@@ -17,6 +17,7 @@ class siginController extends GetxController {
     if (st.currentState!.validate()) {
       st.currentState!.save();
       loding = true;
+      update();
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: pass)

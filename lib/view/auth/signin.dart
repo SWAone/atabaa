@@ -120,17 +120,11 @@ class signin extends StatelessWidget {
                         height: 40.h,
                         // ignore: sort_child_properties_last
                         child: Center(
-                          child: cc.loding == false
-                              ? ineed.custmText(
-                                  data: 'انشاء حساب',
-                                  color: Colors.white.withOpacity(0.8),
-                                  fontSize: 15.sp,
-                                  isbold: true)
-                              : LoadingAnimationWidget.threeRotatingDots(
-                                  color: Colors.white,
-                                  size: 20.sp,
-                                ),
-                        ),
+                            child: ineed.custmText(
+                                data: 'انشاء حساب',
+                                color: Colors.white.withOpacity(0.8),
+                                fontSize: 15.sp,
+                                isbold: true)),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white.withOpacity(0.2)),

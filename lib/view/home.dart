@@ -161,6 +161,7 @@ class home extends StatelessWidget {
                           builder: (BuildContext context,
                               AsyncSnapshot<List<Post>> snapshot) {
                             if (snapshot.hasError) {
+                              cc.update();
                               return Center(
                                   child: Text('Error: ${snapshot.error}'));
                             }
@@ -183,6 +184,7 @@ class home extends StatelessWidget {
                                       Post post = snapshot.data![index];
                                       return ineed.postContener(
                                           onPressedDelet: () {
+                                            cc.update();
                                             cc.rank == 1
                                                 ? cc.delet(docId: post.docId)
                                                 : null;
@@ -197,6 +199,7 @@ class home extends StatelessWidget {
                                     itemCount: 5,
                                     itemBuilder:
                                         (BuildContext context, int index) {
+                                      cc.update();
                                       return ineed.lodingPostShimmer();
                                     },
                                   );
