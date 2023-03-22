@@ -67,6 +67,26 @@ class newAcuont extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: ineed.custemTextForm(
+                          lable: 'المحافظة',
+                          onSaved: (p0) {
+                            cc.loction = p0!;
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: ineed.custemTextForm(
                           lable: 'البريد الالكتروني',
                           onSaved: (p0) {
                             cc.email = p0!;

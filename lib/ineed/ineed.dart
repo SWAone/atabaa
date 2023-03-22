@@ -140,7 +140,10 @@ class ineed {
   }
 
   static Widget showMotrshrefConterer(
-      {required String title, required String subtitle, bool isadmin = false}) {
+      {required String title,
+      required String subtitle,
+      bool isadmin = false,
+      void Function()? onShowMore}) {
     return Padding(
         padding: const EdgeInsets.all(8),
         child: Container(
@@ -156,12 +159,25 @@ class ineed {
                 fit: BoxFit.cover,
               ),
             ),
-            title: ineed.custmText(data: title, fontSize: 15.sp, isbold: true),
+            title: Row(
+              children: [
+                ineed.custmText(data: title, fontSize: 15.sp, isbold: true),
+                SizedBox(
+                  width: 5.w,
+                ),
+                isadmin
+                    ? CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/admin.png'),
+                        radius: 7.sp,
+                      )
+                    : Text(''),
+              ],
+            ),
             subtitle: ineed.custmText(
                 data: 'يسكن في  :  $subtitle', isbold: true, fontSize: 12.sp),
             trailing: isadmin
                 ? IconButton(
-                    onPressed: () {},
+                    onPressed: onShowMore,
                     icon: Icon(
                       Icons.arrow_drop_down,
                       color: Colors.white,

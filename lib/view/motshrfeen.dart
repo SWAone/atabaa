@@ -1,6 +1,7 @@
 import 'package:ataba/Controller/motshrfeenController.dart';
 import 'package:ataba/color/color.dart';
 import 'package:ataba/ineed/ineed.dart';
+import 'package:ataba/view/AllUserScrren.dart';
 import 'package:ataba/view/motshref_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -81,7 +82,7 @@ class motshrfeen extends StatelessWidget {
                                 physics: NeverScrollableScrollPhysics(),
                                 itemCount: cc.AllMotshrfeen.length > 0
                                     ? cc.visibleItems
-                                    : 10,
+                                    : 3,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return cc.AllMotshrfeen.length > 0
@@ -174,16 +175,40 @@ class motshrfeen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    ineed.custmText(
-                        data: 'مسؤلي الفرع', fontSize: 15.sp, isbold: true),
-                    ineed.showMotrshrefConterer(
-                        title: 'محمد بهاء محمد',
-                        subtitle: 'كريطعة',
-                        isadmin: true),
-                    ineed.showMotrshrefConterer(
-                        title: 'محمد بهاء محمد',
-                        subtitle: 'كريطعة',
-                        isadmin: true),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ineed.custmText(
+                            data: 'مسؤلي الفرع', fontSize: 15.sp, isbold: true),
+                        IconButton(
+                            onPressed: () {
+                              Get.to(() => AllUserScrren());
+                            },
+                            icon: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 25.sp,
+                            ))
+                      ],
+                    ),
+                    ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: cc.admins.length > 0 ? cc.admins.length : 5,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return cc.admins.length > 0
+                            ? ineed.showMotrshrefConterer(
+                                onShowMore: () {},
+                                title: '${cc.admins[index]['name']}',
+                                subtitle: '${cc.admins[index]['loction']}',
+                                isadmin: true)
+                            : Shimmer.fromColors(
+                                child: ineed.showMotrshrefConterer(
+                                    title: ' ', subtitle: ' ', isadmin: true),
+                                baseColor: Colors.white12,
+                                highlightColor: Colors.white24);
+                      },
+                    )
                   ],
                 ),
               ),

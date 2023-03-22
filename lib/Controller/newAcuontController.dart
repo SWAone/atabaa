@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class newAcuontController extends GetxController {
   GlobalKey<FormState> st = new GlobalKey<FormState>();
-  String email = '', pass = '', name = '';
+  String email = '', pass = '', name = '', loction = '';
   bool loding = false;
 
   @override
@@ -25,10 +25,12 @@ class newAcuontController extends GetxController {
             .createUserWithEmailAndPassword(email: email, password: pass)
             .then((value) async {
           String uid1 = await FirebaseAuth.instance.currentUser!.uid;
-          await FirebaseFirestore.instance
-              .collection('atusers')
-              .doc(uid1)
-              .set({"name": name, "rank": 0, "uid": uid1}).then((value) {
+          await FirebaseFirestore.instance.collection('atusers').doc(uid1).set({
+            "name": name,
+            "rank": 0,
+            "uid": uid1,
+            "loction": loction
+          }).then((value) {
             Get.off(() => home());
             loding = false;
           });
