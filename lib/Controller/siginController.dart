@@ -20,7 +20,7 @@ class siginController extends GetxController {
       update();
       try {
         await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: pass)
+            .signInWithEmailAndPassword(email: email + '@1.1', password: pass)
             .then((value) {
           loding = false;
           update();

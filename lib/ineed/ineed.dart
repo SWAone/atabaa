@@ -141,8 +141,10 @@ class ineed {
 
   static Widget showMotrshrefConterer(
       {required String title,
+      void Function()? canselUplodToAdmin,
       required String subtitle,
       bool isadmin = false,
+      bool isUplodToAdmin = false,
       void Function()? onShowMore}) {
     return Padding(
         padding: const EdgeInsets.all(8),
@@ -175,15 +177,29 @@ class ineed {
             ),
             subtitle: ineed.custmText(
                 data: 'يسكن في  :  $subtitle', isbold: true, fontSize: 12.sp),
-            trailing: isadmin
-                ? IconButton(
-                    onPressed: onShowMore,
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.white,
-                      size: 30.sp,
-                    ))
-                : null,
+            trailing: isUplodToAdmin
+                ? InkWell(
+                    onTap: canselUplodToAdmin,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.green),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: ineed.custmText(
+                            data: 'تم الرفع',
+                          ),
+                        )),
+                  )
+                : isadmin
+                    ? IconButton(
+                        onPressed: onShowMore,
+                        icon: Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white,
+                          size: 30.sp,
+                        ))
+                    : null,
           ),
         ));
   }

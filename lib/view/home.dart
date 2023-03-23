@@ -1,8 +1,11 @@
 import 'package:ataba/Controller/ItemController.dart';
 import 'package:ataba/Controller/homeController.dart';
+import 'package:ataba/Controller/motshrfeenController.dart';
 import 'package:ataba/color/color.dart';
 import 'package:ataba/ineed/ineed.dart';
 import 'package:ataba/view/addPost.dart';
+import 'package:ataba/view/adminsMotshrfen.dart';
+import 'package:ataba/view/istmara/Foradmins.dart';
 import 'package:ataba/view/istmara/tashef.dart';
 import 'package:ataba/view/model/Post.dart';
 import 'package:ataba/view/motshrfeen.dart';
@@ -21,7 +24,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class home extends StatelessWidget {
   home({super.key});
-
+  motshrfeenController ss = Get.put(motshrfeenController());
   ItemController Controller = Get.put(ItemController());
 
   @override
@@ -53,7 +56,19 @@ class home extends StatelessWidget {
                           ),
                           backgroundColor: color.postContener,
                         )
-                      : null,
+                      : cc.rank == 2
+                          ? FloatingActionButton(
+                              onPressed: () {
+                                Get.to(() => Foradmins());
+                              },
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 30.sp,
+                              ),
+                              backgroundColor: color.postContener,
+                            )
+                          : null,
                 );
               },
             ),
@@ -137,23 +152,57 @@ class home extends StatelessWidget {
                                     ),
                                     //الادمن الاساسي
                                   )
-                                : Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: InkWell(
-                                      onTap: () {
-                                        Get.to(() => motshrfeen());
-                                      },
-                                      child: Container(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4),
-                                          child: ineed.custmText(
-                                              data: 'المتشرفين بالخدمة',
-                                              fontSize: 15.sp,
-                                              isbold: true),
+                                : cc.rank == 1
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: InkWell(
+                                          onTap: () {
+                                            Get.to(() => motshrfeen());
+                                          },
+                                          child: Container(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(4),
+                                              child: ineed.custmText(
+                                                  data: 'المنتسبين',
+                                                  fontSize: 15.sp,
+                                                  isbold: true),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  )
+                                      )
+                                    : cc.rank == 2
+                                        ? InkWell(
+                                            onTap: () {
+                                              ss.adminspepole.clear();
+                                              ss.getAdminpepols(docid: cc.uid!);
+                                              Get.to(() => adminsMotshrfen());
+                                            },
+                                            child: Container(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(6),
+                                                child: ineed.custmText(
+                                                    data: 'المنتسبين',
+                                                    fontSize: 15.sp,
+                                                    isbold: true),
+                                              ),
+                                            ),
+                                          )
+                                        : InkWell(
+                                            onTap: () {
+                                              Get.to(() => tashef());
+                                            },
+                                            child: Container(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(6),
+                                                child: ineed.custmText(
+                                                    data: 'المنتسبين',
+                                                    fontSize: 15.sp,
+                                                    isbold: true),
+                                              ),
+                                            ),
+                                          ),
                           ],
                         ),
                         StreamBuilder<List<Post>>(
@@ -199,7 +248,6 @@ class home extends StatelessWidget {
                                     itemCount: 5,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      cc.update();
                                       return ineed.lodingPostShimmer();
                                     },
                                   );

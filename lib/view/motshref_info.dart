@@ -1,12 +1,22 @@
 import 'dart:math';
 
+import 'package:ataba/Controller/homeController.dart';
+import 'package:ataba/Controller/motshrfeenController.dart';
 import 'package:ataba/ineed/ineed.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class motshref_info extends StatelessWidget {
+  String? userdocId;
+
+  homeController ss = Get.put(homeController());
+  motshrfeenController sss = Get.put(motshrfeenController());
+
   String? Fname,
       berthdy,
       loction,
@@ -17,9 +27,13 @@ class motshref_info extends StatelessWidget {
       radeyTo40,
       havaTato,
       anySice,
-      roulse;
+      roulse,
+      doic;
+  int need;
+
   motshref_info({
     super.key,
+    required this.need,
     required this.Fname,
     required this.berthdy,
     required this.loction,
@@ -31,6 +45,7 @@ class motshref_info extends StatelessWidget {
     required this.havaTato,
     required this.anySice,
     required this.roulse,
+    required this.doic,
   });
 
   @override
@@ -118,6 +133,91 @@ class motshref_info extends StatelessWidget {
                   infoContener(
                       data: '$radeyTo40',
                       title: 'هل لديك استعداد للخدمة في الزيارة الاربعينية ؟ '),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  ss.rank == 2
+                      ? Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Container(
+                              width: double.infinity,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.green),
+                              child: TextButton(
+                                  onPressed: () async {
+                                    print('ababababa');
+                                    print(doic);
+                                    String uid = await FirebaseAuth
+                                        .instance.currentUser!.uid;
+                                    await FirebaseFirestore.instance
+                                        .collection('atusers')
+                                        .doc(uid)
+                                        .collection('users')
+                                        .doc(doic)
+                                        .update({'need': 11}).then((value) {
+                                      Get.defaultDialog(
+                                          title: 'تم رفع المستخدم',
+                                          content: Text(
+                                              'حدث الصفحة لمشاهدة التغيرات'));
+                                    });
+                                  },
+                                  child: ineed.custmText(
+                                    data: need == 0 ? 'رفع' : 'تم رفع المستخدم',
+                                    isbold: true,
+                                    fontSize: 15.sp,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ),
+                        )
+                      : Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Container(
+                              width: double.infinity,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.green),
+                              child: TextButton(
+                                  onPressed: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection('Accepted')
+                                        .add({
+                                      "Fname": Fname,
+                                      "berthdy": berthdy,
+                                      "loction": loction,
+                                      "loctionAndwhere": loctionAndwhere,
+                                      "phoneNumber": phoneNumber,
+                                      "didWorkWithatba": didWorkWithatba,
+                                      "whayYouuNedTashrf,": whayYouuNedTashrf,
+                                      "radeyTo40": radeyTo40,
+                                      "havaTato": havaTato,
+                                      "anySice": anySice,
+                                      "roulse": roulse,
+                                    }).then((value) {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.success,
+                                        animType: AnimType.rightSlide,
+                                        title: 'نجح',
+                                        desc: 'تم قبول المنتسب',
+                                        btnOkOnPress: () {},
+                                      )..show();
+                                    });
+                                  },
+                                  child: ineed.custmText(
+                                    data: 'قبول',
+                                    isbold: true,
+                                    fontSize: 15.sp,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: 10.h,
                   ),

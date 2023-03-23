@@ -28,7 +28,6 @@ class homeController extends GetxController {
 
     checkRank();
 
-    await Future.delayed(Duration(seconds: 3));
     shouldReloadPage.value = false;
 
     print(uid);

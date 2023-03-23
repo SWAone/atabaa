@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.2.10
   loading_animation_widget: ^1.2.0+4
+  toggle_switch: ^2.0.1
+  dropdown_button2: ^2.0.0
 
 dev_dependencies:
   flutter_test:

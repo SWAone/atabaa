@@ -10,16 +10,19 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 class motshrfeenController extends GetxController {
   List<Map> AllMotshrfeen = [];
   List<Map> admins = [];
+  List<String> adminsDicid = [];
+  List<String> admonId = [];
+  String? uid;
+  List<String> usersdoicId = [];
   int visibleItems = 3;
-  List<aadminModel> adminspepole = [];
+  List<Map> adminspepole = [];
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
 
     getMotshrffen();
     getAdmins();
-    GetpeopleFormAdminAcuneent(docid: 'IQSDJ7imsGgm7oHUVjYVAlV0ROo1');
+    uid = await FirebaseAuth.instance.currentUser!.uid;
   }
 
   void getMotshrffen() async {
@@ -32,25 +35,6 @@ class motshrfeenController extends GetxController {
     });
   }
 
-  void GetpeopleFormAdminAcuneent(
-      {String docid = 'IQSDJ7imsGgm7oHUVjYVAlV0ROo1'}) async {
-    await FirebaseFirestore.instance
-        .collection('atusers')
-        .doc(docid)
-        .collection('people')
-        .get()
-        .then((value) {
-      value.docs.forEach((element) {
-        adminspepole
-            .add(aadminModel.jsoin({"d": "d", "dd": "dd"}, element.data()));
-      });
-    }).then((value) {
-      print('============');
-      print(adminspepole[0].peopel['name']);
-      print(adminspepole[1].peopel['name']);
-    });
-  }
-
   void getAdmins() async {
     await FirebaseFirestore.instance
         .collection('atusers')
@@ -58,8 +42,33 @@ class motshrfeenController extends GetxController {
         .get()
         .then((value) => value.docs.forEach((element) {
               admins.add(element.data());
+              print('111111111111111');
+              print(element.id);
+              adminsDicid.add(element.id);
+              print('233333');
+
+              print(adminsDicid);
             }))
         .then((value) {
+      update();
+    });
+  }
+
+  void getAdminpepols({required String docid}) async {
+    usersdoicId.clear();
+    adminspepole.clear();
+    print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww' + docid);
+    await FirebaseFirestore.instance
+        .collection('atusers')
+        .doc(docid)
+        .collection('users')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        adminspepole.add(element.data());
+        usersdoicId.add(element.id);
+      });
+    }).then((value) {
       update();
     });
   }
@@ -73,5 +82,21 @@ class motshrfeenController extends GetxController {
     }
 
     update();
+  }
+
+  void DleateUserOnTap({required String docid}) async {
+    await FirebaseFirestore.instance
+        .collection('atusers')
+        .doc(uid)
+        .collection('users')
+        .doc(docid
+            //
+            )
+        .update({'need': 0}).then((value) {
+      Get.defaultDialog(
+          title: 'تم الغاء الرفع',
+          content: Text('حدث الصفحة لمشاهدة التغيرات'));
+      update();
+    });
   }
 }

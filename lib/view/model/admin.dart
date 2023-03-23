@@ -3,9 +3,11 @@ class aadminModel {
 
   Map peopel = {};
 
-  aadminModel.jsoin(Map map, Map pepelMap) {
+  aadminModel.jsoin(Map map) {
     name = map['name'];
-    loction = map['name'];
-    peopel = pepelMap;
+    loction = map['loction'];
+  }
+  aadminModel.people(Map map) {
+    peopel = map;
   }
 }

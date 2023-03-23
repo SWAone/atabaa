@@ -43,23 +43,6 @@ class login extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ineed.custemTextForm(
-                            lable: 'الاسم الثلاثي',
-                            onSaved: (p0) {
-                              cc.name = p0;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -78,7 +61,7 @@ class login extends StatelessWidget {
                               child: Center(
                                 child: controller.loding == false
                                     ? ineed.custmText(
-                                        data: 'الدخول الى التطبيق بدون حساب',
+                                        data: 'الدخول المباشر التطبيق',
                                         color: Colors.white.withOpacity(0.8),
                                         fontSize: 15.sp,
                                         isbold: true)
@@ -111,17 +94,11 @@ class login extends StatelessWidget {
                               height: 40.h,
                               // ignore: sort_child_properties_last
                               child: Center(
-                                child: controller.loding == false
-                                    ? ineed.custmText(
-                                        data: 'تسجيل الدخول',
-                                        color: Colors.white.withOpacity(0.8),
-                                        fontSize: 15.sp,
-                                        isbold: true)
-                                    : LoadingAnimationWidget.threeRotatingDots(
-                                        color: Colors.white,
-                                        size: 20.sp,
-                                      ),
-                              ),
+                                  child: ineed.custmText(
+                                      data: 'تسجيل الدخول (للمسؤلين)',
+                                      color: Colors.white.withOpacity(0.8),
+                                      fontSize: 15.sp,
+                                      isbold: true)),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.white.withOpacity(0.2)),

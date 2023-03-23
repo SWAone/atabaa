@@ -8,6 +8,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class tasherfController extends GetxController {
   GlobalKey<FormState> form = new GlobalKey<FormState>();
   bool lodeing = false;
+  final List<String> items = [
+    'بغداد',
+    'البصرة',
+    'النجف',
+    'كربلاء',
+    'دهوك',
+    'أربيل',
+    'السليمانية',
+    'نينوى',
+    'واسط',
+    'صلاح الدين',
+    'ديالى',
+    'الأنبار',
+    'ميسان',
+    'ذي قار',
+    'بابل',
+    'المثنى',
+    'القادسية',
+    'الديوانية',
+    'كركوك',
+  ];
+  String? selectedValue;
 
   String? Fname,
       berthdy,

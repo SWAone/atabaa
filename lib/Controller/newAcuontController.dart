@@ -22,12 +22,13 @@ class newAcuontController extends GetxController {
       update();
       try {
         await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: pass)
+            .createUserWithEmailAndPassword(
+                email: email + '@1.1', password: pass)
             .then((value) async {
           String uid1 = await FirebaseAuth.instance.currentUser!.uid;
           await FirebaseFirestore.instance.collection('atusers').doc(uid1).set({
             "name": name,
-            "rank": 0,
+            "rank": 2,
             "uid": uid1,
             "loction": loction
           }).then((value) {

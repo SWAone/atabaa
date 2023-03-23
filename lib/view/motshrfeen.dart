@@ -1,7 +1,10 @@
 import 'package:ataba/Controller/motshrfeenController.dart';
 import 'package:ataba/color/color.dart';
 import 'package:ataba/ineed/ineed.dart';
+import 'package:ataba/view/Accepted.dart';
 import 'package:ataba/view/AllUserScrren.dart';
+import 'package:ataba/view/Uoloded.dart';
+import 'package:ataba/view/auth/newAcuont.dart';
 import 'package:ataba/view/motshref_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,6 +20,13 @@ class motshrfeen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        child: Icon(Icons.bookmark_added_rounded),
+        onPressed: () {
+          Get.to(() => Accepted());
+        },
+      ),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: GetBuilder<motshrfeenController>(
@@ -52,12 +62,9 @@ class motshrfeen extends StatelessWidget {
                               )
                             ],
                           ),
-                          ineed.custmText(
-                              data: 'المتشرفين بالخدمة ', fontSize: 20.sp),
+                          ineed.custmText(data: 'المنتسبين', fontSize: 20.sp),
                           IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
+                              onPressed: () {},
                               icon: Icon(
                                 Icons.arrow_forward,
                                 size: 25.sp,
@@ -89,6 +96,8 @@ class motshrfeen extends StatelessWidget {
                                       ? InkWell(
                                           onTap: () {
                                             Get.to(() => motshref_info(
+                                                  need: 0,
+                                                  doic: '',
                                                   Fname: cc.AllMotshrfeen[index]
                                                       ['Fname'],
                                                   anySice:
@@ -179,10 +188,12 @@ class motshrfeen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ineed.custmText(
-                            data: 'مسؤلي الفرع', fontSize: 15.sp, isbold: true),
+                            data: 'الامانة العامة',
+                            fontSize: 15.sp,
+                            isbold: true),
                         IconButton(
                             onPressed: () {
-                              Get.to(() => AllUserScrren());
+                              Get.to(() => newAcuont());
                             },
                             icon: Icon(
                               Icons.add,
@@ -191,17 +202,27 @@ class motshrfeen extends StatelessWidget {
                             ))
                       ],
                     ),
+                    // ExpansionTileDemo()
                     ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: cc.admins.length > 0 ? cc.admins.length : 5,
+                      itemCount:
+                          cc.adminsDicid.length > 0 ? cc.adminsDicid.length : 5,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return cc.admins.length > 0
-                            ? ineed.showMotrshrefConterer(
-                                onShowMore: () {},
-                                title: '${cc.admins[index]['name']}',
-                                subtitle: '${cc.admins[index]['loction']}',
-                                isadmin: true)
+                        return cc.adminsDicid.length > 0
+                            ? InkWell(
+                                onTap: () {
+                                  Get.to(() => Uoloded(
+                                        name: cc.admins[index]['name'],
+                                        userUId: cc.adminsDicid[index],
+                                      ));
+                                },
+                                child: ineed.showMotrshrefConterer(
+                                    onShowMore: () {},
+                                    title: '${cc.admins[index]['name']}',
+                                    subtitle: '${cc.admins[index]['loction']}',
+                                    isadmin: true),
+                              )
                             : Shimmer.fromColors(
                                 child: ineed.showMotrshrefConterer(
                                     title: ' ', subtitle: ' ', isadmin: true),

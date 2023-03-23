@@ -1,6 +1,7 @@
 import 'package:ataba/Controller/motshrfeenController.dart';
 import 'package:ataba/color/color.dart';
 import 'package:ataba/ineed/ineed.dart';
+import 'package:ataba/view/auth/newAcuont.dart';
 import 'package:ataba/view/motshref_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -60,7 +61,7 @@ class AllUserScrren extends StatelessWidget {
                               ))
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
