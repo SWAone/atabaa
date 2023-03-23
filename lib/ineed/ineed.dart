@@ -195,9 +195,9 @@ class ineed {
                     ? IconButton(
                         onPressed: onShowMore,
                         icon: Icon(
-                          Icons.arrow_drop_down,
+                          Icons.delete,
                           color: Colors.white,
-                          size: 30.sp,
+                          size: 24.sp,
                         ))
                     : null,
           ),

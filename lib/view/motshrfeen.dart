@@ -64,7 +64,9 @@ class motshrfeen extends StatelessWidget {
                           ),
                           ineed.custmText(data: 'المنتسبين', fontSize: 20.sp),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.back();
+                              },
                               icon: Icon(
                                 Icons.arrow_forward,
                                 size: 25.sp,
@@ -96,6 +98,38 @@ class motshrfeen extends StatelessWidget {
                                       ? InkWell(
                                           onTap: () {
                                             Get.to(() => motshref_info(
+                                                  cardd: cc.AllMotshrfeen[index]
+                                                      ['cardnuber'],
+                                                  born: cc.AllMotshrfeen[index]
+                                                      ['born'],
+                                                  childNumber:
+                                                      cc.AllMotshrfeen[index]
+                                                          ['childNumber'],
+                                                  fborn: cc.AllMotshrfeen[index]
+                                                      ['fatherborn'],
+                                                  imageUrlToDisply:
+                                                      cc.AllMotshrfeen[index]
+                                                          ['imge'],
+                                                  lunguth:
+                                                      cc.AllMotshrfeen[index]
+                                                          ['lunguth'],
+                                                  mared: cc.AllMotshrfeen[index]
+                                                      ['mared'],
+                                                  mhna: cc.AllMotshrfeen[index]
+                                                      ['mhna'],
+                                                  nahea: cc.AllMotshrfeen[index]
+                                                      ['nahea'],
+                                                  numberTwmen:
+                                                      cc.AllMotshrfeen[index]
+                                                          ['numberTwmen'],
+                                                  qada: cc.AllMotshrfeen[index]
+                                                      ['qada'],
+                                                  sakin: cc.AllMotshrfeen[index]
+                                                      ['sakin'],
+                                                  stady: cc.AllMotshrfeen[index]
+                                                      ['stady'],
+                                                  worrk: cc.AllMotshrfeen[index]
+                                                      ['worrk'],
                                                   need: 0,
                                                   doic: '',
                                                   Fname: cc.AllMotshrfeen[index]
@@ -218,7 +252,10 @@ class motshrfeen extends StatelessWidget {
                                       ));
                                 },
                                 child: ineed.showMotrshrefConterer(
-                                    onShowMore: () {},
+                                    onShowMore: () async {
+                                      cc.dleatAdmin(
+                                          docid: cc.adminsDicid[index]);
+                                    },
                                     title: '${cc.admins[index]['name']}',
                                     subtitle: '${cc.admins[index]['loction']}',
                                     isadmin: true),

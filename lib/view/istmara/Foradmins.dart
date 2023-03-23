@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:ataba/Controller/homeController.dart';
 import 'package:ataba/Controller/motshrfeenController.dart';
 import 'package:ataba/Controller/secondAstmara.dart';
 import 'package:ataba/Controller/tashrefController.dart';
@@ -9,6 +12,10 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Foradmins extends StatelessWidget {
   Foradmins({super.key});
@@ -69,8 +76,88 @@ class Foradmins extends StatelessWidget {
                                     data: 'استمارة الانتساب الالكترونية',
                                     isbold: true,
                                     fontSize: 15.sp),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                InkWell(
+                                    onTap: () async {
+                                      cc.isTabOnAddImage = true;
+                                      cc.update();
+                                      ImagePicker imagePicker = ImagePicker();
+                                      cc.file = await imagePicker.pickImage(
+                                          source: ImageSource.gallery);
+
+                                      if (cc.file == null) return;
+                                      String UineqFileNmaw = DateTime.now()
+                                          .microsecondsSinceEpoch
+                                          .toString();
+                                      Reference referenceRote =
+                                          FirebaseStorage.instance.ref();
+                                      Reference referenceDirimage =
+                                          referenceRote.child('users');
+                                      cc.referenceimageUAplod =
+                                          referenceDirimage
+                                              .child(UineqFileNmaw);
+                                      try {
+                                        await cc.referenceimageUAplod!
+                                            .putFile(File(cc.file!.path))
+                                            .then((p0) {
+                                          cc.isTabOnAddImage = true;
+                                          cc.loding = true;
+
+                                          cc.update();
+                                        });
+                                        if (imagePicker != null) {
+                                          cc.image = cc.imageUrlToDisply =
+                                              await cc.referenceimageUAplod!
+                                                  .getDownloadURL();
+                                          cc.update();
+                                        }
+                                      } catch (e) {}
+                                    },
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: color.postContener,
+                                            border: Border.all(
+                                                color: Colors.white)),
+                                        width: 200.w,
+                                        height: 100.h,
+                                        child: Center(
+                                            child: cc.loding == false
+                                                ? Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      ineed.custmText(
+                                                          data: cc.isTabOnAddImage
+                                                              ? 'جار التحميل ...'
+                                                              : 'اضافة صورة'),
+                                                      SizedBox(
+                                                        width: 5.w,
+                                                      ),
+                                                      Icon(
+                                                        Icons
+                                                            .camera_alt_outlined,
+                                                        color: Colors.white,
+                                                        size: 20.sp,
+                                                      ),
+                                                    ],
+                                                  )
+                                                : cc.imageUrlToDisply != null &&
+                                                        cc.isTabOnAddImage
+                                                    ? Image(
+                                                        fit: BoxFit.cover,
+                                                        image: NetworkImage(
+                                                            '${cc.imageUrlToDisply}'))
+                                                    : Text('WS')))),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
                                 ineed.custemTextForm(
-                                  lable: 'الاسم الثلاثي',
+                                  lable: 'الاسم الرباعي',
                                   onSaved: (p0) {
                                     cc.Fname = p0;
                                   },
@@ -88,13 +175,138 @@ class Foradmins extends StatelessWidget {
                                   height: 10.h,
                                 ),
                                 ineed.custemTextForm(
-                                  lable: 'المحافظة',
+                                  lable:
+                                      'رقم هوية الاحوال المدنية او البطاقة الوطنية',
                                   onSaved: (p0) {
-                                    cc.loction = p0;
+                                    cc.card = p0;
                                   },
                                 ),
                                 SizedBox(
                                   height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'محل الولادة',
+                                  onSaved: (p0) {
+                                    cc.born = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'محل ولادة الاب',
+                                  onSaved: (p0) {
+                                    cc.fborn = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'رقم البطاقة التموينية',
+                                  onSaved: (p0) {
+                                    cc.numberTwmen = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'رقم بطاقة السكن',
+                                  onSaved: (p0) {
+                                    cc.sakin = p0;
+                                  },
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'عدد الاولاد',
+                                  onSaved: (p0) {
+                                    cc.childNumber = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'الحالة الزوجية',
+                                  onSaved: (p0) {
+                                    cc.mared = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 3),
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        hint: Text(
+                                          'المحافظة',
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.white,
+                                              fontFamily: 'kufi'),
+                                        ),
+                                        items: cc.items
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: cc.selectedValue,
+                                        onChanged: (value) {
+                                          cc.update();
+                                          cc.selectedValue = value as String;
+                                          cc.selectedValue != null
+                                              ? cc.loction = cc.selectedValue
+                                              : cc.loction = 'بغداد';
+                                        },
+                                        buttonStyleData: const ButtonStyleData(
+                                          height: 40,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'القضاء',
+                                  onSaved: (p0) {
+                                    cc.qada = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'الناحية',
+                                  onSaved: (p0) {
+                                    cc.nahea = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'المنطقة او الحي',
+                                  onSaved: (p0) {
+                                    cc.haay = p0;
+                                  },
                                 ),
                                 SizedBox(
                                   height: 10.h,
@@ -117,22 +329,43 @@ class Foradmins extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-                                ineed.custemTextForm(
-                                  lable: '''
-               سبق وان خدمت في العتبات المقدسة؟
-              
-              ''',
-                                  onSaved: (p0) {
-                                    cc.didWorkWithatba = p0;
-                                  },
+                                Container(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ineed.custmText(
+                                          data:
+                                              'سبق وان خدمت في العتبات المقدسة؟'),
+                                      ToggleSwitch(
+                                        minWidth: 50.0,
+                                        cornerRadius: 20.0,
+                                        activeBgColors: [
+                                          [Colors.green[800]!],
+                                          [Colors.red[800]!]
+                                        ],
+                                        activeFgColor: Colors.white,
+                                        inactiveBgColor: Colors.grey,
+                                        inactiveFgColor: Colors.white,
+                                        initialLabelIndex: 1,
+                                        totalSwitches: 2,
+                                        labels: ['نعم', 'لا'],
+                                        radiusStyle: true,
+                                        onToggle: (index) {
+                                          index == 1
+                                              ? cc.didWorkWithatba = 'لا'
+                                              : cc.didWorkWithatba = 'نعم';
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 10.h,
                                 ),
                                 ineed.custemTextForm(
-                                  lable: '''
-               ما سبب طلبك التشرف للخدمة ؟
-              ''',
+                                  lable: ''' ما سبب طلبك التشرف للخدمة ؟ ''',
                                   onSaved: (p0) {
                                     cc.whayYouuNedTashrf = p0;
                                   },
@@ -140,49 +373,273 @@ class Foradmins extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-                                ineed.custemTextForm(
-                                  lable: '''
-               لديك استعداد للخدمة في الاربعينية؟
-              ''',
-                                  onSaved: (p0) {
-                                    cc.radeyTo40 = p0;
-                                  },
+                                Container(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ineed.custmText(
+                                          data:
+                                              'لديك استعداد للخدمة في الاربعينية؟'),
+                                      ToggleSwitch(
+                                        minWidth: 50.0,
+                                        cornerRadius: 20.0,
+                                        activeBgColors: [
+                                          [Colors.green[800]!],
+                                          [Colors.red[800]!]
+                                        ],
+                                        activeFgColor: Colors.white,
+                                        inactiveBgColor: Colors.grey,
+                                        inactiveFgColor: Colors.white,
+                                        initialLabelIndex: 1,
+                                        totalSwitches: 2,
+                                        labels: ['نعم', 'لا'],
+                                        radiusStyle: true,
+                                        onToggle: (index) {
+                                          index == 1
+                                              ? cc.radeyTo40 = 'لا'
+                                              : cc.radeyTo40 = 'نعم';
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ineed.custmText(
+                                          data: 'هل لديك وشم ظاهر على جسدك '),
+                                      ToggleSwitch(
+                                        minWidth: 50.0,
+                                        cornerRadius: 20.0,
+                                        activeBgColors: [
+                                          [Colors.green[800]!],
+                                          [Colors.red[800]!]
+                                        ],
+                                        activeFgColor: Colors.white,
+                                        inactiveBgColor: Colors.grey,
+                                        inactiveFgColor: Colors.white,
+                                        initialLabelIndex: 1,
+                                        totalSwitches: 2,
+                                        labels: ['نعم', 'لا'],
+                                        radiusStyle: true,
+                                        onToggle: (index) {
+                                          index == 1
+                                              ? cc.havaTato = 'لا'
+                                              : cc.havaTato = 'نعم';
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ineed.custmText(
+                                          data: 'هل لديك مرض مزمن ؟'),
+                                      ToggleSwitch(
+                                        minWidth: 50.0,
+                                        cornerRadius: 20.0,
+                                        activeBgColors: [
+                                          [Colors.green[800]!],
+                                          [Colors.red[800]!]
+                                        ],
+                                        activeFgColor: Colors.white,
+                                        inactiveBgColor: Colors.grey,
+                                        inactiveFgColor: Colors.white,
+                                        initialLabelIndex: 1,
+                                        totalSwitches: 2,
+                                        labels: ['نعم', 'لا'],
+                                        radiusStyle: true,
+                                        onToggle: (index) {
+                                          index == 1
+                                              ? cc.anySice = 'لا'
+                                              : cc.anySice = 'نعم';
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ineed.custmText(
+                                          data:
+                                              'هل تستطيع الالتزام بتعليمات الخدمة؟'),
+                                      ToggleSwitch(
+                                        minWidth: 50.0,
+                                        cornerRadius: 20.0,
+                                        activeBgColors: [
+                                          [Colors.green[800]!],
+                                          [Colors.red[800]!]
+                                        ],
+                                        activeFgColor: Colors.white,
+                                        inactiveBgColor: Colors.grey,
+                                        inactiveFgColor: Colors.white,
+                                        initialLabelIndex: 1,
+                                        totalSwitches: 2,
+                                        labels: ['نعم', 'لا'],
+                                        radiusStyle: true,
+                                        onToggle: (index) {
+                                          index == 1
+                                              ? cc.roulse = 'لا'
+                                              : cc.roulse = 'نعم';
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Divider(
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                ineed.custmText(
+                                    data: 'المعلومات الدراسية والمهنية',
+                                    isbold: true),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 3),
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        hint: Text(
+                                          'التحصيل الدراسي',
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.white,
+                                              fontFamily: 'kufi'),
+                                        ),
+                                        items: cc.study
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: cc.selectedStadyValue,
+                                        onChanged: (value) {
+                                          cc.update();
+                                          cc.selectedStadyValue =
+                                              value as String;
+                                          cc.selectedStadyValue != null
+                                              ? cc.stady = cc.selectedStadyValue
+                                              : cc.stady = 'يقراء ويكتب';
+                                        },
+                                        buttonStyleData: const ButtonStyleData(
+                                          height: 40,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 3),
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        hint: Text(
+                                          'العمل',
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.white,
+                                              fontFamily: 'kufi'),
+                                        ),
+                                        items: cc.work
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: cc.selectedWorkValue,
+                                        onChanged: (value) {
+                                          cc.update();
+                                          cc.selectedWorkValue =
+                                              value as String;
+                                          cc.selectedWorkValue != null
+                                              ? cc.worrk = cc.selectedWorkValue
+                                              : cc.worrk = 'كاسب';
+                                        },
+                                        buttonStyleData: const ButtonStyleData(
+                                          height: 40,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 10.h,
                                 ),
                                 ineed.custemTextForm(
-                                  lable: '''
-              هل لديك وشم ظاهر على جسدك 
-              ''',
+                                  lable: 'المهنة',
                                   onSaved: (p0) {
-                                    cc.havaTato = p0;
+                                    cc.mhna = p0;
                                   },
                                 ),
                                 SizedBox(
-                                  height: 10.h,
+                                  height: 20.h,
                                 ),
                                 ineed.custemTextForm(
-                                  lable: '''
-              هل لديك مرض مزمن ؟
-              ''',
+                                  lable: 'اللغات المتقنة',
                                   onSaved: (p0) {
-                                    cc.anySice = p0;
+                                    cc.lunguth = p0;
                                   },
                                 ),
                                 SizedBox(
-                                  height: 10.h,
-                                ),
-                                ineed.custemTextForm(
-                                  lable: '''
-              هل تستطيع الالتزام بتعليمات الخدمة؟
-              ''',
-                                  onSaved: (p0) {
-                                    cc.roulse = p0;
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 10.h,
+                                  height: 20.h,
                                 ),
                                 InkWell(
                                   onTap: () {

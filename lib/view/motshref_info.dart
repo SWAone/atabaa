@@ -20,6 +20,7 @@ class motshref_info extends StatelessWidget {
   String? Fname,
       berthdy,
       loction,
+      fborn,
       loctionAndwhere,
       phoneNumber,
       didWorkWithatba,
@@ -28,12 +29,27 @@ class motshref_info extends StatelessWidget {
       havaTato,
       anySice,
       roulse,
+      born,
+      cardd,
+      sakin,
+      childNumber,
+      mared,
+      qada,
+      numberTwmen,
+      nahea,
+      stady,
+      worrk,
+      mhna,
+      lunguth,
+      imageUrlToDisply,
       doic;
+
   int need;
 
   motshref_info({
     super.key,
     required this.need,
+    required this.cardd,
     required this.Fname,
     required this.berthdy,
     required this.loction,
@@ -46,6 +62,19 @@ class motshref_info extends StatelessWidget {
     required this.anySice,
     required this.roulse,
     required this.doic,
+    required this.born,
+    required this.fborn,
+    required this.numberTwmen,
+    required this.sakin,
+    required this.childNumber,
+    required this.mared,
+    required this.qada,
+    required this.nahea,
+    required this.stady,
+    required this.worrk,
+    required this.mhna,
+    required this.lunguth,
+    required this.imageUrlToDisply,
   });
 
   @override
@@ -136,6 +165,65 @@ class motshref_info extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
+                  infoContener(data: '$cardd', title: 'رقم هوية الاحوال'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$born', title: 'محل الولادة'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  //
+                  infoContener(data: '$fborn', title: 'محل ولادة الاب'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(
+                      data: '$numberTwmen', title: 'رقم البطاقة التومنية'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$sakin', title: 'رقم بطاقة السكن'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$mared', title: 'الحالة الزوجية'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$childNumber', title: ' عدد الاولاد'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$qada', title: 'القضاء'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$nahea', title: ' الناحية'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$mhna', title: 'المهنة'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$stady', title: 'التحصيل الدراسي'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$worrk', title: 'العمل'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$lunguth', title: 'اللغات '),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$mhna', title: 'المهنة'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+
                   ss.rank == 2
                       ? Center(
                           child: Padding(
@@ -198,6 +286,20 @@ class motshref_info extends StatelessWidget {
                                       "havaTato": havaTato,
                                       "anySice": anySice,
                                       "roulse": roulse,
+                                      "born": born,
+                                      "fatherborn": fborn,
+                                      "numberTwmen": numberTwmen,
+                                      "sakin": sakin,
+                                      "childNumber": childNumber,
+                                      "mared": mared,
+                                      "qada": qada,
+                                      "nahea": nahea,
+                                      "stady": stady,
+                                      "worrk": worrk,
+                                      "mhna": mhna,
+                                      "lunguth": lunguth,
+                                      "cardnuber": cardd,
+                                      "imge": imageUrlToDisply,
                                     }).then((value) {
                                       AwesomeDialog(
                                         context: context,

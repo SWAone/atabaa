@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class loginControllr extends GetxController {
-  String? name;
   bool loding = false;
   String? uid1;
   GlobalKey<FormState> st = new GlobalKey<FormState>();
@@ -22,7 +21,7 @@ class loginControllr extends GetxController {
       await FirebaseFirestore.instance
           .collection('atusers')
           .doc(uid1)
-          .set({"name": name, "rank": 0, "uid": uid1}).then((value) {
+          .set({"name": "بدون اسم", "rank": 0, "uid": uid1}).then((value) {
         Get.off(() => home());
         loding = false;
       });

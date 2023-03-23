@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class homeController extends GetxController {
   Reference? referenceimageUAplod;
@@ -30,7 +31,7 @@ class homeController extends GetxController {
 
     shouldReloadPage.value = false;
 
-    print(uid);
+    FirebaseMessaging.instance.subscribeToTopic('all');
   }
 
   void reloadPage() {

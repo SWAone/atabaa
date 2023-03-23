@@ -79,6 +79,38 @@ class adminsMotshrfen extends StatelessWidget {
                                       ? InkWell(
                                           onTap: () {
                                             Get.to(() => motshref_info(
+                                                  cardd: cc.adminspepole[index]
+                                                      ['cardNumber'],
+                                                  born: cc.adminspepole[index]
+                                                      ['born'],
+                                                  childNumber:
+                                                      cc.adminspepole[index]
+                                                          ['childNumber'],
+                                                  fborn: cc.adminspepole[index]
+                                                      ['fatherborn'],
+                                                  imageUrlToDisply:
+                                                      cc.adminspepole[index]
+                                                          ['imge'],
+                                                  lunguth:
+                                                      cc.adminspepole[index]
+                                                          ['lunguth'],
+                                                  mared: cc.adminspepole[index]
+                                                      ['mared'],
+                                                  mhna: cc.adminspepole[index]
+                                                      ['mhna'],
+                                                  nahea: cc.adminspepole[index]
+                                                      ['nahea'],
+                                                  numberTwmen:
+                                                      cc.adminspepole[index]
+                                                          ['numberTwmen'],
+                                                  qada: cc.adminspepole[index]
+                                                      ['qada'],
+                                                  sakin: cc.adminspepole[index]
+                                                      ['sakin'],
+                                                  stady: cc.adminspepole[index]
+                                                      ['stady'],
+                                                  worrk: cc.adminspepole[index]
+                                                      ['worrk'],
                                                   need: cc.adminspepole[index]
                                                       ['need'],
                                                   doic: cc.usersdoicId[index],

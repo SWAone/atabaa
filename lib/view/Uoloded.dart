@@ -54,6 +54,23 @@ class Uoloded extends StatelessWidget {
                               ? InkWell(
                                   onTap: () {
                                     Get.to(() => motshref_info(
+                                        cardd: cc.users[index]['cardNumber'],
+                                        born: cc.users[index]['born'],
+                                        childNumber: cc.users[index]
+                                            ['childNumber'],
+                                        fborn: cc.users[index]['fatherborn'],
+                                        imageUrlToDisply: cc.users[index]
+                                            ['imge'],
+                                        lunguth: cc.users[index]['lunguth'],
+                                        mared: cc.users[index]['mared'],
+                                        mhna: cc.users[index]['mhna'],
+                                        nahea: cc.users[index]['nahea'],
+                                        numberTwmen: cc.users[index]
+                                            ['numberTwmen'],
+                                        qada: cc.users[index]['qada'],
+                                        sakin: cc.users[index]['sakin'],
+                                        stady: cc.users[index]['stady'],
+                                        worrk: cc.users[index]['worrk'],
                                         need: cc.users[index]['need'],
                                         Fname: cc.users[index]['Fname'],
                                         berthdy: cc.users[index]['berthdy'],

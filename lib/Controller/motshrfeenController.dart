@@ -1,4 +1,3 @@
-import 'package:ataba/view/model/admin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -98,5 +97,52 @@ class motshrfeenController extends GetxController {
           content: Text('حدث الصفحة لمشاهدة التغيرات'));
       update();
     });
+  }
+
+  void dleatAdmin({required String docid}) {
+    AwesomeDialog(
+      descTextStyle: TextStyle(
+          fontSize: 15.sp, fontWeight: FontWeight.bold, fontFamily: 'kufi'),
+      titleTextStyle: TextStyle(
+          fontSize: 15.sp, fontWeight: FontWeight.bold, fontFamily: 'kufi'),
+      context: Get.context!,
+      dialogType: DialogType.info,
+      animType: AnimType.rightSlide,
+      title: 'هل انت متاكد',
+      desc: 'سوف يتم الغاء الترقية',
+      btnCancelText: 'الغاء',
+      btnOkText: 'حسنا',
+      buttonsTextStyle: TextStyle(
+          fontSize: 15.sp, fontWeight: FontWeight.bold, fontFamily: 'kufi'),
+      btnCancelOnPress: () {},
+      btnOkOnPress: () async {
+        await FirebaseFirestore.instance
+            .collection('atusers')
+            .doc(docid)
+            .update({"rank": 99}).then((value) {
+          AwesomeDialog(
+            descTextStyle: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'kufi'),
+            titleTextStyle: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'kufi'),
+            context: Get.context!,
+            dialogType: DialogType.success,
+            animType: AnimType.rightSlide,
+            title: ' تم الغاء الترقية',
+            desc: 'اعد تشغيل التطبيق لمشاهدة التغيرات',
+            btnOkText: 'حسنا',
+            buttonsTextStyle: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'kufi'),
+            btnOkOnPress: () {},
+          )..show();
+        });
+      },
+    )..show();
   }
 }

@@ -32,12 +32,13 @@ class newAcuontController extends GetxController {
             "uid": uid1,
             "loction": loction
           }).then((value) {
-            Get.off(() => home());
             loding = false;
+            Get.defaultDialog(
+                title: 'تم انشاء الحساب',
+                content: Text(
+                    'لقد تم تسجيل خروجك من حساب الادمن اعد تسجيل الدخول من جديد'));
+            update();
           });
-          loding = false;
-          update();
-          Get.offAll(() => home());
         });
       } on FirebaseAuthException catch (e) {
         loding = false;

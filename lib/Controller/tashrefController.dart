@@ -64,7 +64,21 @@ class tasherfController extends GetxController {
         "radeyTo40": radeyTo40,
         "havaTato": havaTato,
         "anySice": anySice,
-        "roulse": roulse
+        "roulse": roulse,
+        "born": 'طلب خارجي',
+        "fatherborn": 'طلب خارجي',
+        "numberTwmen": 'طلب خارجي',
+        "sakin": 'طلب خارجي',
+        "childNumber": 'طلب خارجي',
+        "mared": 'طلب خارجي',
+        "qada": 'طلب خارجي',
+        "nahea": 'طلب خارجي',
+        "stady": 'طلب خارجي',
+        "worrk": 'طلب خارجي',
+        "mhna": 'طلب خارجي',
+        "lunguth": 'طلب خارجي',
+        "imge": 'طلب خارجي',
+        "cardnuber": 'طلب خارجي'
       }).then((value) {
         lodeing = false;
         AwesomeDialog(
