@@ -1,15 +1,24 @@
 import 'package:ataba/view/auth/newAcuont.dart';
 import 'package:ataba/view/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
 
 class newAcuontController extends GetxController {
   GlobalKey<FormState> st = new GlobalKey<FormState>();
   String email = '', pass = '', name = '', loction = '';
   bool loding = false;
 
+  GlobalKey<FormState> form = new GlobalKey<FormState>();
+  bool lodeing = false;
+  String? image, imageUrlToDisply, urll;
+  bool isTabOnAddImage = false;
+
+  Reference? referenceimageUAplod;
+  XFile? file;
   @override
   void onInit() {
     super.onInit();
@@ -30,7 +39,8 @@ class newAcuontController extends GetxController {
             "name": name,
             "rank": 2,
             "uid": uid1,
-            "loction": loction
+            "loction": loction,
+            "img": imageUrlToDisply
           }).then((value) {
             loding = false;
             Get.defaultDialog(

@@ -183,7 +183,7 @@ class motshrfeen extends StatelessWidget {
                                 onTap: () {
                                   if (cc.visibleItems ==
                                       cc.AllMotshrfeen.length) {
-                                    cc.visibleItems = 3;
+                                    cc.visibleItems = 0;
                                     cc.update();
                                   } else {
                                     cc.showMore();
@@ -252,6 +252,7 @@ class motshrfeen extends StatelessWidget {
                                       ));
                                 },
                                 child: ineed.showMotrshrefConterer(
+                                    img: '${cc.admins[index]['img']}',
                                     onShowMore: () async {
                                       cc.dleatAdmin(
                                           docid: cc.adminsDicid[index]);

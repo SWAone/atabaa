@@ -9,18 +9,9 @@ import 'package:ataba/view/istmara/Foradmins.dart';
 import 'package:ataba/view/istmara/tashef.dart';
 import 'package:ataba/view/model/Post.dart';
 import 'package:ataba/view/motshrfeen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class home extends StatelessWidget {
   home({super.key});
@@ -105,32 +96,70 @@ class home extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                  child: Row(
-                                children: [
-                                  InkWell(
-                                    onDoubleTap: () {
-                                      print('ouuuuuuuuut');
-                                      cc.singOt();
-                                    },
-                                    child: Icon(
-                                      Icons.newspaper,
+                              child: InkWell(
+                                onTap: () {
+                                  Get.defaultDialog(
+                                      backgroundColor: color.arrowback,
+                                      title: 'اتصل بنا',
+                                      titleStyle: TextStyle(
+                                          fontFamily: 'kufi',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.sp,
+                                          color: Colors.white),
+                                      content: Column(
+                                        children: [
+                                          ineed.callMetod(
+                                              'اسياسيل', '07733892226', false),
+                                          ineed.callMetod('زين العراق',
+                                              '07822892226', false),
+                                          ineed.callMetod(
+                                              'انستغرام', 'ab_ss0', true),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 3),
+                                            child: InkWell(
+                                              onTap: () {
+                                                cc.singOt();
+                                              },
+                                              child: Container(
+                                                width: double.infinity,
+                                                height: 50.h,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: color.postContener,
+                                                ),
+                                                child: Center(
+                                                  child: ineed.custmText(
+                                                      data: 'تسجيل الخروج'),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ));
+                                },
+                                child: Container(
+                                    child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.call,
                                       color: Colors.white,
-                                      size: 28.sp,
+                                      size: 20.sp,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(4),
-                                    child: ineed.custmText(
-                                        data: 'النشاطات',
-                                        fontSize: 15.sp,
-                                        isbold: true),
-                                  ),
-                                ],
-                              )),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: ineed.custmText(
+                                          data: 'اتصل بنا',
+                                          fontSize: 15.sp,
+                                          isbold: true),
+                                    ),
+                                  ],
+                                )),
+                              ),
                             ),
                             //يوزر عااااااااادي
                             cc.rank == 0

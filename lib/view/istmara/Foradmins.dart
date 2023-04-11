@@ -312,7 +312,7 @@ class Foradmins extends StatelessWidget {
                                   height: 10.h,
                                 ),
                                 ineed.custemTextForm(
-                                  lable: 'العنوان واقرب نقطة دالة',
+                                  lable: ' اقرب نقطة دالة',
                                   onSaved: (p0) {
                                     cc.loctionAndwhere = p0;
                                   },
@@ -643,7 +643,11 @@ class Foradmins extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    cc.UplodMotshref();
+                                    cc.loding
+                                        ? cc.UplodMotshref()
+                                        : Get.defaultDialog(
+                                            title: "جار تحميل الصورة",
+                                            middleText: "انتظر قليلا");
                                   },
                                   child: Container(
                                     width: 300.w,

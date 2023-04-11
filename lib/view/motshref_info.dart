@@ -115,6 +115,20 @@ class motshref_info extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
+                  Container(
+                      width: 100.w,
+                      height: 100.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                      child: imageUrlToDisply!.length > 10
+                          ? Image.network('$imageUrlToDisply')
+                          : Image.asset('assets/images/bac.png')),
+
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   infoContener(data: '$berthdy', title: 'المواليد'),
                   SizedBox(
                     height: 10.h,

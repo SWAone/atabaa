@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ineed {
   static Widget custmText(
@@ -141,6 +142,7 @@ class ineed {
 
   static Widget showMotrshrefConterer(
       {required String title,
+      String img = '',
       void Function()? canselUplodToAdmin,
       required String subtitle,
       bool isadmin = false,
@@ -154,13 +156,29 @@ class ineed {
               border: Border.all(color: Colors.white)),
           child: ListTile(
             leading: CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.white,
-              child: Image.asset(
-                'assets/images/bac.png',
-                fit: BoxFit.cover,
-              ),
-            ),
+                radius: 27,
+                backgroundColor: Colors.white,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  width: 60.h,
+                  height: 60.h,
+                  child: img.length > 10
+                      ? ClipRRect(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image(
+                            image: NetworkImage(img),
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : Image.asset(
+                          'assets/images/bac.png',
+                          fit: BoxFit.cover,
+                        ),
+                )),
             title: Row(
               children: [
                 ineed.custmText(data: title, fontSize: 15.sp, isbold: true),
@@ -202,5 +220,49 @@ class ineed {
                     : null,
           ),
         ));
+  }
+
+  static void launchCaller(
+      {required String phoneNumber, required bool isurl}) async {
+    if (isurl) {
+      final Uri url = Uri(
+          scheme: 'https', host: 'www.instagram.com', path: '/$phoneNumber/');
+
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        print('could not launch $url');
+      }
+    } else {
+      final Uri url = Uri(scheme: 'tel', path: phoneNumber);
+
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        print('canooot');
+      }
+    }
+  }
+
+  static Widget callMetod(String data, String elemnt, bool isurl) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+      child: InkWell(
+        onTap: () {
+          launchCaller(phoneNumber: elemnt, isurl: isurl);
+        },
+        child: Container(
+          width: double.infinity,
+          height: 50.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: color.postContener,
+          ),
+          child: Center(
+            child: ineed.custmText(data: data),
+          ),
+        ),
+      ),
+    );
   }
 }

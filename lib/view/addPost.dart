@@ -170,8 +170,14 @@ class addPost extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            hocc.addPost();
-                            hocc.loding = false;
+                            if (hocc.loding) {
+                              hocc.addPost();
+                              hocc.loding = false;
+                            } else {
+                              Get.defaultDialog(
+                                  title: "جار تحميل الصورة",
+                                  middleText: 'انتظر قليلا');
+                            }
                           },
                           child: Container(
                             width: double.infinity,

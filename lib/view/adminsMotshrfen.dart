@@ -148,37 +148,41 @@ class adminsMotshrfen extends StatelessWidget {
                                                 ));
                                           },
                                           child: ineed.showMotrshrefConterer(
-                                              canselUplodToAdmin: () async {
-                                                AwesomeDialog(
-                                                  context: context,
-                                                  dialogType: DialogType.info,
-                                                  animType: AnimType.rightSlide,
-                                                  title: 'هل انت متاكد',
-                                                  desc:
-                                                      'سوف يتم الغاء رفع ${cc.adminspepole[index]['Fname']}',
-                                                  btnCancelOnPress: () {},
-                                                  btnOkOnPress: () {
-                                                    cc.DleateUserOnTap(
-                                                      docid:
-                                                          cc.usersdoicId[index],
-                                                    );
-                                                  },
-                                                )..show();
-                                              },
-                                              isUplodToAdmin:
-                                                  cc.adminspepole[index]
-                                                              ['need'] ==
-                                                          11
-                                                      ? true
-                                                      : false,
-                                              title: cc.adminspepole[index]
-                                                  ['Fname'],
-                                              subtitle: cc.adminspepole[index]
-                                                  ['loction']),
+                                            canselUplodToAdmin: () async {
+                                              AwesomeDialog(
+                                                context: context,
+                                                dialogType: DialogType.info,
+                                                animType: AnimType.rightSlide,
+                                                title: 'هل انت متاكد',
+                                                desc:
+                                                    'سوف يتم الغاء رفع ${cc.adminspepole[index]['Fname']}',
+                                                btnCancelOnPress: () {},
+                                                btnOkOnPress: () {
+                                                  cc.DleateUserOnTap(
+                                                    docid:
+                                                        cc.usersdoicId[index],
+                                                  );
+                                                },
+                                              )..show();
+                                            },
+                                            isUplodToAdmin:
+                                                cc.adminspepole[index]
+                                                            ['need'] ==
+                                                        11
+                                                    ? true
+                                                    : false,
+                                            title: cc.adminspepole[index]
+                                                ['Fname'],
+                                            subtitle: cc.adminspepole[index]
+                                                ['loction'],
+                                            img: cc.adminspepole[index]['imge'],
+                                          ),
                                         )
                                       : Shimmer.fromColors(
                                           child: ineed.showMotrshrefConterer(
-                                              title: ' ', subtitle: ' '),
+                                              img: 's',
+                                              title: ' ',
+                                              subtitle: ' '),
                                           baseColor: Colors.white12,
                                           highlightColor: Colors.white24);
                                 },

@@ -97,6 +97,7 @@ class secondAstmara extends GetxController {
   @override
   void onInit() async {
     uid = await FirebaseAuth.instance.currentUser!.uid;
+
     print(uid);
     super.onInit();
   }

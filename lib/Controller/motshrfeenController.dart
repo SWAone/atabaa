@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,7 @@ class motshrfeenController extends GetxController {
   List<String> admonId = [];
   String? uid;
   List<String> usersdoicId = [];
-  int visibleItems = 3;
+  int visibleItems = 0;
   List<Map> adminspepole = [];
   @override
   void onInit() async {
@@ -41,12 +43,8 @@ class motshrfeenController extends GetxController {
         .get()
         .then((value) => value.docs.forEach((element) {
               admins.add(element.data());
-              print('111111111111111');
-              print(element.id);
-              adminsDicid.add(element.id);
-              print('233333');
 
-              print(adminsDicid);
+              adminsDicid.add(element.id);
             }))
         .then((value) {
       update();
@@ -56,7 +54,6 @@ class motshrfeenController extends GetxController {
   void getAdminpepols({required String docid}) async {
     usersdoicId.clear();
     adminspepole.clear();
-    print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww' + docid);
     await FirebaseFirestore.instance
         .collection('atusers')
         .doc(docid)
