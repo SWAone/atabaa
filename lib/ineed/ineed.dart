@@ -143,9 +143,11 @@ class ineed {
   static Widget showMotrshrefConterer(
       {required String title,
       String img = '',
+      void Function()? toacspt,
       void Function()? canselUplodToAdmin,
       required String subtitle,
       bool isadmin = false,
+      bool toAcspt = false,
       bool isUplodToAdmin = false,
       void Function()? onShowMore}) {
     return Padding(
@@ -191,10 +193,20 @@ class ineed {
                         radius: 7.sp,
                       )
                     : Text(''),
+                toAcspt
+                    ? IconButton(
+                        onPressed: toacspt,
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ))
+                    : Text('')
               ],
             ),
             subtitle: ineed.custmText(
-                data: 'يسكن في  :  $subtitle', isbold: true, fontSize: 12.sp),
+                data: 'عدد الزيارات التي شارك بها :  $subtitle',
+                isbold: true,
+                fontSize: 12.sp),
             trailing: isUplodToAdmin
                 ? InkWell(
                     onTap: canselUplodToAdmin,

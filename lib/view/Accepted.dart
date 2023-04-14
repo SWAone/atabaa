@@ -53,9 +53,14 @@ class Accepted extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return cc.AllAccepted.length > 0
                             ? ineed.showMotrshrefConterer(
+                                toAcspt: true,
+                                toacspt: () {
+                                  cc.deletAcspet(cc.AcceptedDocId[index]);
+                                },
                                 img: '${cc.AllAccepted[index]['imge']}',
                                 title: '${cc.AllAccepted[index]['Fname']}',
-                                subtitle: '${cc.AllAccepted[index]['loction']}')
+                                subtitle:
+                                    '${cc.AllAccepted[index]['contributions']}')
                             : Shimmer.fromColors(
                                 child: ineed.showMotrshrefConterer(
                                     img: 's',

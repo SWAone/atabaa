@@ -98,6 +98,17 @@ class motshrfeen extends StatelessWidget {
                                       ? InkWell(
                                           onTap: () {
                                             Get.to(() => motshref_info(
+                                                  join: cc.AllMotshrfeen[index]
+                                                      ['familyName'],
+                                                  moaref:
+                                                      cc.AllMotshrfeen[index]
+                                                          ['moaref'],
+                                                  mosma: cc.AllMotshrfeen[index]
+                                                      ['mosama'],
+                                                  famlyName:
+                                                      cc.AllMotshrfeen[index]
+                                                          ['familyName'],
+                                                  contributions: 0,
                                                   cardd: cc.AllMotshrfeen[index]
                                                       ['cardnuber'],
                                                   born: cc.AllMotshrfeen[index]
@@ -167,10 +178,14 @@ class motshrfeen extends StatelessWidget {
                                                 ));
                                           },
                                           child: ineed.showMotrshrefConterer(
+                                              toAcspt: true,
+                                              toacspt: () {
+                                                cc.deletnew(cc
+                                                    .AllMotshrfeendocid[index]);
+                                              },
                                               title: cc.AllMotshrfeen[index]
                                                   ['Fname'],
-                                              subtitle: cc.AllMotshrfeen[index]
-                                                  ['loction']),
+                                              subtitle: 'طلب جديد'),
                                         )
                                       : Shimmer.fromColors(
                                           child: ineed.showMotrshrefConterer(
@@ -258,7 +273,7 @@ class motshrfeen extends StatelessWidget {
                                           docid: cc.adminsDicid[index]);
                                     },
                                     title: '${cc.admins[index]['name']}',
-                                    subtitle: '${cc.admins[index]['loction']}',
+                                    subtitle: 'مسؤل',
                                     isadmin: true),
                               )
                             : Shimmer.fromColors(

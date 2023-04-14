@@ -87,13 +87,6 @@ class tashef extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-                                // ineed.custemTextForm(
-                                //   lable: 'المحافظة',
-                                //   onSaved: (p0) {
-                                //     cc.loction = p0;
-                                //   },
-                                // ),
-
                                 Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 3),
@@ -243,7 +236,6 @@ class tashef extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-
                                 Container(
                                   width: double.infinity,
                                   child: Row(
@@ -312,7 +304,6 @@ class tashef extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-
                                 Container(
                                   width: double.infinity,
                                   child: Row(

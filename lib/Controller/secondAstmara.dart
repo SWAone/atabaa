@@ -49,6 +49,21 @@ class secondAstmara extends GetxController {
     'ماجستير',
     'دكتوراه',
   ];
+  final List<String> mosamaTandemi = [
+    'منتسب',
+    'المعاون االداري لرئيس المجموعة',
+    'المعاون الفني لرئيس المجموعة',
+    'معاون رئيس قسم',
+    'رئيس مجموعة',
+    'رئيس قسم',
+    'المعاون االداري لرئيس الفرع',
+    'المعاون الفني لرئيس الفرع',
+    'رئيس فرع',
+    'المعاون االداري لرئيس المؤسسة',
+    'المعاون الفني لرئيس المؤسسة',
+    'رئيس المؤسسة',
+    'الامين العام',
+  ];
   final List<String> work = [
     'كاسب',
     'طالب ثانوي',
@@ -56,7 +71,17 @@ class secondAstmara extends GetxController {
     'موظف حكومي',
     'موظف اهلي',
   ];
-  String? selectedValue, selectedStadyValue, selectedWorkValue;
+  final List<String> maredList = [
+    'اعزب / عزباء',
+    ' متزوج / متزوجة',
+    ' ارمل / ارملة',
+    ' مطلق / مطلقة',
+  ];
+  String? selectedValue,
+      selectedStadyValue,
+      selectedWorkValue,
+      mosamaTandemiValue,
+      selectedMaredValue;
   String? Fname,
       berthdy,
       loction,
@@ -92,7 +117,17 @@ class secondAstmara extends GetxController {
       radeyTo40,
       havaTato,
       anySice,
+      //المساهمات
+
+      //اللقب
+      familyName,
+      mosama,
+      moaref,
+      join,
       roulse;
+
+  int contributions = 0;
+
   String? uid;
   @override
   void onInit() async {
@@ -139,6 +174,11 @@ class secondAstmara extends GetxController {
         "mhna": mhna,
         "lunguth": lunguth,
         "imge": imageUrlToDisply,
+        "contributions": 0,
+        "familyName": familyName,
+        "mosama": mosama,
+        "moaref": moaref,
+        "join": join,
       }).then((value) {
         lodeing = false;
         AwesomeDialog(

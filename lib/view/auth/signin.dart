@@ -112,27 +112,6 @@ class signin extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 30),
-                    //   child: InkWell(
-                    //     onTap: () {
-                    //       Get.to(() => newAcuont());
-                    //     },
-                    //     child: Container(
-                    //       height: 40.h,
-                    //       // ignore: sort_child_properties_last
-                    //       child: Center(
-                    //           child: ineed.custmText(
-                    //               data: 'انشاء حساب',
-                    //               color: Colors.white.withOpacity(0.8),
-                    //               fontSize: 15.sp,
-                    //               isbold: true)),
-                    //       decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(20),
-                    //           color: Colors.white.withOpacity(0.2)),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

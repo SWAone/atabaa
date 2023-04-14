@@ -1,3 +1,5 @@
+import 'package:ataba/color/color.dart';
+import 'package:ataba/ineed/ineed.dart';
 import 'package:ataba/view/auth/newAcuont.dart';
 import 'package:ataba/view/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +13,7 @@ class newAcuontController extends GetxController {
   GlobalKey<FormState> st = new GlobalKey<FormState>();
   String email = '', pass = '', name = '', loction = '';
   bool loding = false;
+  bool lodingimag = false;
 
   GlobalKey<FormState> form = new GlobalKey<FormState>();
   bool lodeing = false;
@@ -44,9 +47,17 @@ class newAcuontController extends GetxController {
           }).then((value) {
             loding = false;
             Get.defaultDialog(
+                backgroundColor: color.postContener,
                 title: 'تم انشاء الحساب',
-                content: Text(
-                    'لقد تم تسجيل خروجك من حساب الادمن اعد تسجيل الدخول من جديد'));
+                titleStyle: TextStyle(fontFamily: 'kufi', color: Colors.white),
+                content: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: ineed.custmText(
+                      data:
+                          'لقد تم تسجيل خروجك من حساب الادمن اعد تسجيل الدخول من جديد',
+                      color: Colors.white),
+                ));
+
             update();
           });
         });

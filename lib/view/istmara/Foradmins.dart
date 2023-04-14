@@ -157,9 +157,18 @@ class Foradmins extends StatelessWidget {
                                   height: 10.h,
                                 ),
                                 ineed.custemTextForm(
-                                  lable: 'الاسم الرباعي',
+                                  lable: 'الاسم الثلاثي',
                                   onSaved: (p0) {
                                     cc.Fname = p0;
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'اللقب',
+                                  onSaved: (p0) {
+                                    cc.familyName = p0;
                                   },
                                 ),
                                 SizedBox(
@@ -226,12 +235,56 @@ class Foradmins extends StatelessWidget {
                                 SizedBox(
                                   height: 10.h,
                                 ),
-                                ineed.custemTextForm(
-                                  lable: 'الحالة الزوجية',
-                                  onSaved: (p0) {
-                                    cc.mared = p0;
-                                  },
+                                //
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 3),
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        hint: Text(
+                                          'الحالة الزوجية',
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.white,
+                                              fontFamily: 'kufi'),
+                                        ),
+                                        items: cc.maredList
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: cc.selectedMaredValue,
+                                        onChanged: (value) {
+                                          cc.update();
+                                          cc.selectedMaredValue =
+                                              value as String;
+                                          cc.selectedMaredValue != null
+                                              ? cc.mared = cc.selectedMaredValue
+                                              : cc.mared = 'اعزب';
+                                        },
+                                        buttonStyleData: const ButtonStyleData(
+                                          height: 40,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
+
+                                //
                                 SizedBox(
                                   height: 10.h,
                                 ),
@@ -641,6 +694,68 @@ class Foradmins extends StatelessWidget {
                                 SizedBox(
                                   height: 20.h,
                                 ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 3),
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        hint: Text(
+                                          'المسمى التنظيمي',
+                                          style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.white,
+                                              fontFamily: 'kufi'),
+                                        ),
+                                        items: cc.mosamaTandemi
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: cc.mosamaTandemiValue,
+                                        onChanged: (value) {
+                                          cc.update();
+                                          cc.mosamaTandemiValue =
+                                              value as String;
+                                          cc.mosamaTandemiValue != null
+                                              ? cc.mosama =
+                                                  cc.mosamaTandemiValue
+                                              : cc.mosama = 'منتسب';
+                                        },
+                                        buttonStyleData: const ButtonStyleData(
+                                          height: 40,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                ineed.custemTextForm(
+                                  lable: 'اسم المعرف الثلاثي',
+                                  onSaved: (p0) {
+                                    cc.moaref = p0;
+                                  },
+                                ),
+
+                                ineed.custemTextForm(
+                                  lable: 'تاريخ الانضمام للمؤسسة',
+                                  onSaved: (p0) {
+                                    cc.join = p0;
+                                  },
+                                ),
+
                                 InkWell(
                                   onTap: () {
                                     cc.loding

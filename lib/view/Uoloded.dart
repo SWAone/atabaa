@@ -54,6 +54,13 @@ class Uoloded extends StatelessWidget {
                               ? InkWell(
                                   onTap: () {
                                     Get.to(() => motshref_info(
+                                        join: cc.users[index]['familyName'],
+                                        moaref: cc.users[index]['moaref'],
+                                        mosma: cc.users[index]['mosama'],
+                                        famlyName: cc.users[index]
+                                            ['familyName'],
+                                        contributions: cc.users[index]
+                                            ['contributions'],
                                         cardd: cc.users[index]['cardNumber'],
                                         born: cc.users[index]['born'],
                                         childNumber: cc.users[index]
@@ -92,7 +99,8 @@ class Uoloded extends StatelessWidget {
                                   child: ineed.showMotrshrefConterer(
                                       img: cc.users[index]['imge'],
                                       title: cc.users[index]['Fname'],
-                                      subtitle: cc.users[index]['loction']),
+                                      subtitle: cc.users[index]['contributions']
+                                          .toString()),
                                 )
                               : Shimmer.fromColors(
                                   child: ineed.showMotrshrefConterer(

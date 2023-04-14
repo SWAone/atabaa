@@ -35,7 +35,7 @@ class home extends StatelessWidget {
                 return Container(
                   width: 60.w,
                   height: 60.h,
-                  child: cc.rank == 1
+                  child: cc.rank == 1 || cc.rank == 33
                       ? FloatingActionButton(
                           onPressed: () {
                             Get.to(() => addPost());
@@ -113,7 +113,9 @@ class home extends StatelessWidget {
                                           ineed.callMetod('زين العراق',
                                               '07822892226', false),
                                           ineed.callMetod(
-                                              'انستغرام', 'ab_ss0', true),
+                                              'انستغرام', 'nahj.hu', true),
+                                          ineed.callMetod('مطور البرنامج',
+                                              '07801275675', false),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 10, vertical: 3),

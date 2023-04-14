@@ -16,7 +16,7 @@ class motshref_info extends StatelessWidget {
 
   homeController ss = Get.put(homeController());
   motshrfeenController sss = Get.put(motshrfeenController());
-
+  int contributions;
   String? Fname,
       berthdy,
       loction,
@@ -41,13 +41,14 @@ class motshref_info extends StatelessWidget {
       worrk,
       mhna,
       lunguth,
-      imageUrlToDisply,
-      doic;
+      imageUrlToDisply;
 
+  String? mosma, famlyName, moaref, join, doic;
   int need;
 
   motshref_info({
     super.key,
+    required this.contributions,
     required this.need,
     required this.cardd,
     required this.Fname,
@@ -75,6 +76,10 @@ class motshref_info extends StatelessWidget {
     required this.mhna,
     required this.lunguth,
     required this.imageUrlToDisply,
+    required this.mosma,
+    required this.moaref,
+    required this.join,
+    required this.famlyName,
   });
 
   @override
@@ -205,6 +210,22 @@ class motshref_info extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
+                  infoContener(data: '$moaref', title: 'اسم المعرف الثلاثي'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$famlyName', title: 'اللقب'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$mosma', title: 'المسمى التنظيمي'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  infoContener(data: '$join', title: 'تاريخ الانتساب للمؤسسة'),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   infoContener(data: '$childNumber', title: ' عدد الاولاد'),
                   SizedBox(
                     height: 10.h,
@@ -250,24 +271,41 @@ class motshref_info extends StatelessWidget {
                                   color: Colors.green),
                               child: TextButton(
                                   onPressed: () async {
-                                    print('ababababa');
-                                    print(doic);
+                                    int contributions = 0;
+
                                     String uid = await FirebaseAuth
                                         .instance.currentUser!.uid;
                                     await FirebaseFirestore.instance
                                         .collection('atusers')
                                         .doc(uid)
                                         .collection('users')
+                                        .doc(doic
+                                            //
+                                            )
+                                        .get()
+                                        .then((value) => contributions =
+                                            value.data()!['contributions']);
+
+                                    await FirebaseFirestore.instance
+                                        .collection('atusers')
+                                        .doc(uid)
+                                        .collection('users')
                                         .doc(doic)
-                                        .update({'need': 11}).then((value) {
+                                        .update({
+                                      'need': 11,
+                                      'contributions': contributions + 1
+                                    }).then((value) {
                                       Get.defaultDialog(
-                                          title: 'تم رفع المستخدم',
+                                          title:
+                                              'تم رفع المستخدم وزيادة عدد الزيارات التي شارك بها',
                                           content: Text(
                                               'حدث الصفحة لمشاهدة التغيرات'));
                                     });
                                   },
                                   child: ineed.custmText(
-                                    data: need == 0 ? 'رفع' : 'تم رفع المستخدم',
+                                    data: need == 0
+                                        ? 'رفع'
+                                        : 'رفع من جديد لزيارة اخرى ؟',
                                     isbold: true,
                                     fontSize: 15.sp,
                                     color: Colors.white,
@@ -314,6 +352,11 @@ class motshref_info extends StatelessWidget {
                                       "lunguth": lunguth,
                                       "cardnuber": cardd,
                                       "imge": imageUrlToDisply,
+                                      "contributions": contributions,
+                                      "mosma": mosma,
+                                      "famlyName": famlyName,
+                                      "join": join,
+                                      "moaref": moaref,
                                     }).then((value) {
                                       AwesomeDialog(
                                         context: context,

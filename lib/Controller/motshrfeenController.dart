@@ -10,6 +10,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 
 class motshrfeenController extends GetxController {
   List<Map> AllMotshrfeen = [];
+  List<String> AllMotshrfeendocid = [];
   List<Map> admins = [];
   List<String> adminsDicid = [];
   List<String> admonId = [];
@@ -30,9 +31,21 @@ class motshrfeenController extends GetxController {
     await FirebaseFirestore.instance.collection('tasherf').get().then((value) {
       value.docs.forEach((element) {
         AllMotshrfeen.add(element.data());
+        AllMotshrfeendocid.add(element.id);
       });
     }).then((value) {
       update();
+    });
+  }
+
+  deletnew(String doc) async {
+    await FirebaseFirestore.instance
+        .collection('tasherf')
+        .doc(doc)
+        .delete()
+        .then((value) {
+      update();
+      Get.snackbar('نجح', 'تم حذف الطلب');
     });
   }
 
@@ -95,6 +108,32 @@ class motshrfeenController extends GetxController {
       update();
     });
   }
+
+  // void updatContributions({required String docid}) async {
+  //   int contributions = 0;
+  //   await FirebaseFirestore.instance
+  //       .collection('atusers')
+  //       .doc(uid)
+  //       .collection('users')
+  //       .doc(docid
+  //           //
+  //           )
+  //       .get()
+  //       .then((value) => contributions = value.data()!['contributions']);
+  //   await FirebaseFirestore.instance
+  //       .collection('atusers')
+  //       .doc(uid)
+  //       .collection('users')
+  //       .doc(docid
+  //           //
+  //           )
+  //       .update({'contributions': contributions+1}).then((value) {
+  //     Get.defaultDialog(
+  //         title: 'تم',
+  //         content: Text('حدث الصفحة لمشاهدة التغيرات'));
+  //     update();
+  //   });
+  // }
 
   void dleatAdmin({required String docid}) {
     AwesomeDialog(

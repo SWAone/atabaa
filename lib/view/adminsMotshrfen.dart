@@ -79,6 +79,15 @@ class adminsMotshrfen extends StatelessWidget {
                                       ? InkWell(
                                           onTap: () {
                                             Get.to(() => motshref_info(
+                                                  join: cc.adminspepole[index]
+                                                      ['familyName'],
+                                                  moaref: cc.adminspepole[index]
+                                                      ['moaref'],
+                                                  mosma: cc.adminspepole[index]
+                                                      ['mosama'],
+                                                  famlyName:
+                                                      cc.adminspepole[index]
+                                                          ['familyName'],
                                                   cardd: cc.adminspepole[index]
                                                       ['cardNumber'],
                                                   born: cc.adminspepole[index]
@@ -145,6 +154,9 @@ class adminsMotshrfen extends StatelessWidget {
                                                   whayYouuNedTashrf:
                                                       cc.adminspepole[index]
                                                           ['whayYouuNedTashrf'],
+                                                  contributions:
+                                                      cc.adminspepole[index]
+                                                          ['contributions'],
                                                 ));
                                           },
                                           child: ineed.showMotrshrefConterer(
@@ -174,7 +186,8 @@ class adminsMotshrfen extends StatelessWidget {
                                             title: cc.adminspepole[index]
                                                 ['Fname'],
                                             subtitle: cc.adminspepole[index]
-                                                ['loction'],
+                                                    ['contributions']
+                                                .toString(),
                                             img: cc.adminspepole[index]['imge'],
                                           ),
                                         )
