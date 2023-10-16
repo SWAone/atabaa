@@ -96,6 +96,7 @@ class addPost extends StatelessWidget {
                                   cc.update();
                                   ImagePicker imagePicker = ImagePicker();
                                   hocc.file = await imagePicker.pickImage(
+                                      imageQuality: 50,
                                       source: ImageSource.gallery);
 
                                   if (hocc.file == null) return;
@@ -204,4 +205,15 @@ class addPost extends StatelessWidget {
       ),
     ));
   }
+//   void compressImage() async {
+//   File imageFile = await ImagePicker.pickImage();
+//   final tempDir = await getTemporaryDirectory();
+//   final path = tempDir.path;
+//   int rand = new Math.Random().nextInt(10000);
+
+//   Im.Image image = Im.decodeImage(imageFile.readAsBytesSync());
+//   Im.Image smallerImage = Im.copyResize(image, 500); // choose the size here, it will maintain aspect ratio
+
+//   var compressedImage = new File('$path/img_$rand.jpg')..writeAsBytesSync(Im.encodeJpg(image, quality: 85));
+// }
 }

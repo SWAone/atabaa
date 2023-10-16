@@ -1,4 +1,3 @@
-import 'package:ataba/Controller/loginController.dart';
 import 'package:ataba/view/auth/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

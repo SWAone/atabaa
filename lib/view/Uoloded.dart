@@ -54,26 +54,21 @@ class Uoloded extends StatelessWidget {
                               ? InkWell(
                                   onTap: () {
                                     Get.to(() => motshref_info(
-                                        join: cc.users[index]['familyName'],
+                                        join: cc.users[index]['join'],
                                         moaref: cc.users[index]['moaref'],
                                         mosma: cc.users[index]['mosama'],
-                                        famlyName: cc.users[index]
-                                            ['familyName'],
-                                        contributions: cc.users[index]
-                                            ['contributions'],
+                                        famlyName: cc.users[index]['familyName'],
+                                        contributions: cc.users[index]['contributions'],
                                         cardd: cc.users[index]['cardNumber'],
                                         born: cc.users[index]['born'],
-                                        childNumber: cc.users[index]
-                                            ['childNumber'],
+                                        childNumber: cc.users[index]['childNumber'],
                                         fborn: cc.users[index]['fatherborn'],
-                                        imageUrlToDisply: cc.users[index]
-                                            ['imge'],
+                                        imageUrlToDisply: cc.users[index]['imge'],
                                         lunguth: cc.users[index]['lunguth'],
                                         mared: cc.users[index]['mared'],
                                         mhna: cc.users[index]['mhna'],
                                         nahea: cc.users[index]['nahea'],
-                                        numberTwmen: cc.users[index]
-                                            ['numberTwmen'],
+                                        numberTwmen: cc.users[index]['numberTwmen'],
                                         qada: cc.users[index]['qada'],
                                         sakin: cc.users[index]['sakin'],
                                         stady: cc.users[index]['stady'],
@@ -82,19 +77,16 @@ class Uoloded extends StatelessWidget {
                                         Fname: cc.users[index]['Fname'],
                                         berthdy: cc.users[index]['berthdy'],
                                         loction: cc.users[index]['loction'],
-                                        loctionAndwhere: cc.users[index]
-                                            ['loctionAndwhere'],
-                                        phoneNumber: cc.users[index]
-                                            ['phoneNumber'],
-                                        didWorkWithatba: cc.users[index]
-                                            ['didWorkWithatba'],
-                                        whayYouuNedTashrf: cc.users[index]
-                                            ['whayYouuNedTashrf'],
+                                        loctionAndwhere: cc.users[index]['loctionAndwhere'],
+                                        phoneNumber: cc.users[index]['phoneNumber'],
+                                        didWorkWithatba: cc.users[index]['didWorkWithatba'],
+                                        whayYouuNedTashrf: cc.users[index]['whayYouuNedTashrf'],
                                         radeyTo40: cc.users[index]['radeyTo40'],
                                         havaTato: cc.users[index]['havaTato'],
                                         anySice: cc.users[index]['anySice'],
                                         roulse: cc.users[index]['roulse'],
-                                        doic: ''));
+                                        doic: ''
+                                        ));
                                   },
                                   child: ineed.showMotrshrefConterer(
                                       img: cc.users[index]['imge'],

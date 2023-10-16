@@ -36,7 +36,7 @@ class login extends StatelessWidget {
                           horizontal: 20, vertical: 10),
                       child: Container(
                           width: double.infinity,
-                          height: 200.h,
+                          height: 300.h,
                           child: Image(
                               image: AssetImage('assets/images/bac.png'))),
                     ),

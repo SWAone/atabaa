@@ -109,11 +109,9 @@ class home extends StatelessWidget {
                                       content: Column(
                                         children: [
                                           ineed.callMetod(
-                                              'اسياسيل', '07733892226', false),
-                                          ineed.callMetod('زين العراق',
-                                              '07822892226', false),
-                                          ineed.callMetod(
-                                              'انستغرام', 'nahj.hu', true),
+                                              'اسياسيل', '07724472063', false),
+                                          ineed.callMetod('انستغرام',
+                                              'al_saydah_ruqayya', true),
                                           ineed.callMetod('مطور البرنامج',
                                               '07801275675', false),
                                           Padding(

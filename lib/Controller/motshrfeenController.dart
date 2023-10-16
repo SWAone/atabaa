@@ -30,6 +30,7 @@ class motshrfeenController extends GetxController {
   void getMotshrffen() async {
     await FirebaseFirestore.instance.collection('tasherf').get().then((value) {
       value.docs.forEach((element) {
+        print(element.data());
         AllMotshrfeen.add(element.data());
         AllMotshrfeendocid.add(element.id);
       });

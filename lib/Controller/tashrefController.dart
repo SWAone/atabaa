@@ -28,6 +28,8 @@ class tasherfController extends GetxController {
     'القادسية',
     'الديوانية',
     'كركوك',
+    'لبنان',
+    'ايران'
   ];
   String? selectedValue;
 

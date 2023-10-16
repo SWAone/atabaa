@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class signin extends StatelessWidget {
   const signin({super.key});
@@ -20,102 +21,104 @@ class signin extends StatelessWidget {
         builder: (cc) {
           return Directionality(
             textDirection: TextDirection.rtl,
-            child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/aa.jpg'),
-                      fit: BoxFit.cover)),
-              child: Form(
-                key: cc.st,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                        height: 200.h,
-                        child:
-                            Image(image: AssetImage('assets/images/bac.png'))),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    ineed.custmText(
-                        data: 'الدخول من خلال حساب مميز', fontSize: 20.sp),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ineed.custemTextForm(
-                            lable: 'المعرف',
-                            onSaved: (p0) {
-                              cc.email = p0!;
-                            },
-                          ),
-                        ),
+            child: KeyboardVisibilityBuilder(builder: (p0, isKeyboardVisible) {
+              return Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/aa.jpg'),
+                        fit: BoxFit.cover)),
+                child: Form(
+                  key: cc.st,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          height: isKeyboardVisible ? 100.h : 300.h,
+                          child: Image(
+                              image: AssetImage('assets/images/bac.png'))),
+                      SizedBox(
+                        height: 20.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ineed.custemTextForm(
-                            lable: 'كلمة السر',
-                            onSaved: (p0) {
-                              cc.pass = p0!;
-                            },
-                          ),
-                        ),
+                      ineed.custmText(
+                          data: 'الدخول من خلال حساب مميز', fontSize: 20.sp),
+                      SizedBox(
+                        height: 10.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: InkWell(
-                        onTap: () {
-                          cc.sing();
-                        },
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Container(
-                          height: 40.h,
-                          // ignore: sort_child_properties_last
-                          child: Center(
-                            child: cc.loding == false
-                                ? ineed.custmText(
-                                    data: 'تسجيل الدخول',
-                                    color: Colors.white.withOpacity(0.8),
-                                    fontSize: 15.sp,
-                                    isbold: true)
-                                : LoadingAnimationWidget.threeRotatingDots(
-                                    color: Colors.white,
-                                    size: 20.sp,
-                                  ),
-                          ),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white.withOpacity(0.2)),
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ineed.custemTextForm(
+                              lable: 'المعرف',
+                              onSaved: (p0) {
+                                cc.email = p0!;
+                              },
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ineed.custemTextForm(
+                              lable: 'كلمة السر',
+                              onSaved: (p0) {
+                                cc.pass = p0!;
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: InkWell(
+                          onTap: () {
+                            cc.sing();
+                          },
+                          child: Container(
+                            height: 40.h,
+                            // ignore: sort_child_properties_last
+                            child: Center(
+                              child: cc.loding == false
+                                  ? ineed.custmText(
+                                      data: 'تسجيل الدخول',
+                                      color: Colors.white.withOpacity(0.8),
+                                      fontSize: 15.sp,
+                                      isbold: true)
+                                  : LoadingAnimationWidget.threeRotatingDots(
+                                      color: Colors.white,
+                                      size: 20.sp,
+                                    ),
+                            ),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white.withOpacity(0.2)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
           );
         },
       ),

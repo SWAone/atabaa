@@ -1,16 +1,11 @@
 import 'package:ataba/Controller/motshrfeenController.dart';
-import 'package:ataba/color/color.dart';
 import 'package:ataba/ineed/ineed.dart';
-import 'package:ataba/view/AllUserScrren.dart';
 import 'package:ataba/view/motshref_info.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 class adminsMotshrfen extends StatelessWidget {

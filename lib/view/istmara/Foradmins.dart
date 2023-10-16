@@ -85,6 +85,7 @@ class Foradmins extends StatelessWidget {
                                       cc.update();
                                       ImagePicker imagePicker = ImagePicker();
                                       cc.file = await imagePicker.pickImage(
+                                          imageQuality: 50,
                                           source: ImageSource.gallery);
 
                                       if (cc.file == null) return;
